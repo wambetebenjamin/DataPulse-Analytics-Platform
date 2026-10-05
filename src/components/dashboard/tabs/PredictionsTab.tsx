@@ -10,6 +10,7 @@ import {
   KES,
   NUM,
   churnRisk,
+  forecastDiagnostics,
   forecastSummary,
   revenueForecast,
   stockoutPredictions,
@@ -26,7 +27,9 @@ export default function PredictionsTab({ role }: { role: Role }) {
 
   const data = useMemo(() => revenueForecast(horizon), [horizon]);
   const summary = useMemo(() => forecastSummary(horizon), [horizon]);
+  const diag = useMemo(() => forecastDiagnostics(), []);
   const stockouts = useMemo(() => stockoutPredictions().slice(0, 6), []);
+  const stockoutLines = useMemo(() => stockoutPredictions().length, []);
   const highChurn = churnRisk.filter((c) => c.risk >= 60);
 
   const projected = data.filter((p) => p.actual === null && p.forecast !== null);
@@ -148,6 +151,94 @@ export default function PredictionsTab({ role }: { role: Role }) {
             The model assumes the recent trend continues and has no knowledge of seasonality
             beyond the window, step changes such as opening a branch, or external shocks. Refit
             after any structural change rather than forecasting through it.
+          </p>
+        </Explainer>
+      </section>
+
+      {/* ---------- model card: the real parameters behind the estimates ---------- */}
+      <section className={styles.panel}>
+        <div className={styles.panelHead}>
+          <div>
+            <h2 className={styles.panelTitle}>Model card</h2>
+            <p className={styles.panelSub}>
+              The three models on this tab and their live parameters — computed by the same
+              functions that render the charts above, in{" "}
+              <code>src/data/analytics.ts</code>
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Method</th>
+                <th scope="col" className={styles.tdNumHead}>
+                  Fit on this data
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className={styles.tdStrong}>Revenue forecast</td>
+                <td>
+                  Ordinary least squares over a {diag.windowDays}-day window, extended{" "}
+                  {horizon} days ahead
+                </td>
+                <td className={styles.tdNum}>
+                  R² {diag.r2.toFixed(3)} · MAPE {(diag.mape * 100).toFixed(1)}% · trend{" "}
+                  {KES(Math.round(diag.slopePerDay))}/day
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tdStrong}>Churn risk</td>
+                <td>Recency / frequency / spend blend, scored 0–100</td>
+                <td className={styles.tdNum}>
+                  {NUM(churnRisk.length)} customers scored · {NUM(highChurn.length)} at ≥ 60
+                  risk
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.tdStrong}>Stock-out</td>
+                <td>Purchase velocity vs supplier lead time + 10-day buffer</td>
+                <td className={styles.tdNum}>{NUM(stockoutLines)} lines with reorder points</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <Explainer title="Show me the regression code">
+          <p>
+            This is the exact function that produced the forecast line — no black box, no
+            hidden model. It runs in the browser on the same 60-day window you see charted
+            above.
+          </p>
+          <pre className={styles.codeBlock}>
+            <code>{`export function linearRegression(values: number[]) {
+  const n = values.length;
+  const meanX = (n - 1) / 2;
+  const meanY = values.reduce((a, b) => a + b, 0) / n;
+  let num = 0;
+  let den = 0;
+  for (let i = 0; i < n; i += 1) {
+    num += (i - meanX) * (values[i] - meanY);
+    den += (i - meanX) ** 2;
+  }
+  const slope = den === 0 ? 0 : num / den;
+  const intercept = meanY - slope * meanX;
+  const residuals = values.map((v, i) => v - (intercept + slope * i));
+  const sigma = Math.sqrt(
+    residuals.reduce((a, r) => a + r * r, 0) / Math.max(n - 2, 1)
+  );
+  return { slope, intercept, sigma, meanY };
+}`}</code>
+          </pre>
+          <p>
+            On this window the fit gives a slope of {KES(Math.round(diag.slopePerDay))} per
+            day (about {KES(Math.round(diag.monthlyDrift), true)} a month) against a mean of{" "}
+            {KES(Math.round(diag.meanDailyRevenue))} daily revenue, with residual σ ={" "}
+            {KES(Math.round(diag.residualSigma))}.
           </p>
         </Explainer>
       </section>

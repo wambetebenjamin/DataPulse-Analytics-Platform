@@ -90,7 +90,7 @@
 }
 
 a.contactValue:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .contactNote {

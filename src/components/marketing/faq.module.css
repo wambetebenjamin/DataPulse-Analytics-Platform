@@ -16,7 +16,7 @@
 }
 
 .item[data-open="true"] {
-  border-color: rgba(23, 193, 232, 0.45);
+  border-color: rgba(33, 82, 255, 0.45);
 }
 
 .heading {
@@ -40,7 +40,7 @@
 }
 
 .trigger:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .chevron {
@@ -51,7 +51,7 @@
 
 .item[data-open="true"] .chevron {
   transform: rotate(180deg);
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .panel {

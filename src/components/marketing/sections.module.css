@@ -9,8 +9,12 @@
 }
 
 .sectionDark {
-  background: linear-gradient(310deg, #141727, #3a416f);
+  background: #141727;
   color: rgba(255, 255, 255, 0.76);
+}
+
+.sectionDark :global(.dp-eyebrow) {
+  color: var(--dp-accent-on-dark);
 }
 
 .head {
@@ -102,7 +106,7 @@
   width: 36px;
   height: 36px;
   border-radius: var(--dp-radius-md);
-  background: var(--dp-grad-dark);
+  background: var(--dp-accent);
   color: var(--dp-white);
   font-size: var(--dp-size-sm);
   font-weight: var(--dp-fw-bold);
@@ -130,7 +134,7 @@
   overflow: hidden;
   padding: 64px 48px;
   border-radius: var(--dp-radius-xxl);
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: var(--dp-white);
   text-align: center;
   box-shadow: var(--dp-shadow-lg);

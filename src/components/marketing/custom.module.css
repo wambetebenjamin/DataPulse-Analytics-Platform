@@ -38,7 +38,7 @@
   width: 44px;
   height: 44px;
   border-radius: var(--dp-radius-lg);
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: var(--dp-white);
   box-shadow: var(--dp-shadow-md);
   margin-bottom: 14px;
@@ -124,7 +124,7 @@
   display: grid;
   place-items: center;
   border-radius: var(--dp-radius-md);
-  background: var(--dp-grad-dark);
+  background: #141727;
   color: var(--dp-white);
   font-size: var(--dp-size-xs);
   font-weight: var(--dp-fw-bold);

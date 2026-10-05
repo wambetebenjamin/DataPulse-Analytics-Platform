@@ -2,51 +2,28 @@
 
 import Link from "next/link";
 import { ArrowRight, CalendarCheck, Database, ShieldCheck, Zap } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/hooks";
 import DashboardPreview from "./DashboardPreview";
-import Globe from "./Globe";
 import styles from "./hero.module.css";
 
 const HEADLINE = "Turn Your Business Data Into Decisions.";
 
 /**
  * Hero — split layout.
- * Left: headline + CTAs. Right: animated live dashboard preview + WebGL globe.
+ * Left: headline + CTAs. Right: live dashboard preview.
  *
- * Brief animation direction: headline enters word by word, 0.09s per word,
- * cubic-bezier(0.25, 1, 0.5, 1).
+ * Deliberately plain: no gradient wash, no animated globe, no word-by-word
+ * headline. The product screenshot is the visual; the copy does the talking.
  */
 export default function Hero() {
-  const reduced = usePrefersReducedMotion();
-  const words = HEADLINE.split(" ");
-
   return (
     <section className={styles.hero} aria-labelledby="hero-heading">
-      {/* Three.js globe — desktop right side only, behind the preview */}
-      <Globe />
-
       <div className={styles.inner}>
         <div className={styles.left}>
-          <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} aria-hidden="true" />
-            Built in Nairobi for East African business
-          </p>
+          <p className={styles.eyebrow}>Built in Nairobi for East African business</p>
 
           <h1 id="hero-heading" className={styles.headline}>
-            {words.map((word, i) => (
-              <span
-                key={`${word}-${i}`}
-                className={styles.word}
-                style={
-                  reduced
-                    ? { opacity: 1, transform: "none", animation: "none" }
-                    : { animationDelay: `${i * 0.09}s` }
-                }
-              >
-                {word}
-                {i < words.length - 1 ? "\u00A0" : ""}
-              </span>
-            ))}
+            Turn Your Business Data Into{" "}
+            <span className={styles.headlineAccent}>Decisions.</span>
           </h1>
 
           <p className={styles.sub}>
@@ -55,8 +32,8 @@ export default function Hero() {
           </p>
 
           <div className={styles.ctas}>
-            <Link href="/signup" className={styles.primaryCta}>
-              Start Free Trial
+            <Link href="/app/dashboard" className={styles.primaryCta}>
+              Try the dashboard free
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
             <Link href="/contact?intent=demo" className={styles.secondaryCta}>
@@ -81,7 +58,7 @@ export default function Hero() {
           </ul>
 
           <p className={styles.microcopy}>
-            14-day free trial on the Business plan. No card required. Cancel any time.
+            Every category is free to try once — no account needed. Sign in when you want more.
           </p>
         </div>
 

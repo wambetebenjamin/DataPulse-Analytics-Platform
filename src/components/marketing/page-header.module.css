@@ -4,7 +4,7 @@
   position: relative;
   padding: 72px 0 56px;
   background:
-    radial-gradient(900px 400px at 72% 0%, rgba(33, 212, 253, 0.14), transparent 62%),
+    radial-gradient(900px 400px at 72% 0%, rgba(33, 82, 255, 0.10), transparent 62%),
     var(--dp-background-default);
   border-bottom: 1px solid var(--dp-grey-200);
 }
@@ -53,7 +53,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 @media (max-width: 768px) {

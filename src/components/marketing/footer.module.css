@@ -78,7 +78,7 @@
 }
 
 .social:hover {
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: #ffffff;
   transform: translateY(-2px);
 }

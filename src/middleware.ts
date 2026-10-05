@@ -6,8 +6,13 @@ import { getToken } from "next-auth/jwt";
  *
  * Three jobs, in order:
  *   1. Rate limit the public API at the edge, before a lambda is ever woken.
- *   2. Gate /app/** behind an authenticated session.
+ *   2. Keep signed-in users off the auth pages.
  *   3. Attach security headers that complement the static set in vercel.json.
+ *
+ * /app/** is deliberately OPEN to anonymous visitors: each dashboard category
+ * can be tried once without an account (see TrialGate — client-side, per
+ * browser), after which it asks for a sign-in. Signed-in users get the full
+ * experience with role gating enforced in the pages and API routes.
  *
  * Runs on the edge runtime, so the in-memory counter below is per-region and
  * best effort; src/lib/rate-limit.ts applies the durable per-route ceiling.
@@ -76,19 +81,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  /* ---------- 2. authentication gate on /app ---------- */
+  /* ---------- 2. /app responses are per-user (or per-trial): never cached ---------- */
   if (pathname.startsWith("/app")) {
-    const token = await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET ?? "dev-only-insecure-secret-change-me",
-    });
-
-    if (!token) {
-      const login = new URL("/login", request.url);
-      login.searchParams.set("callbackUrl", pathname);
-      return securityHeaders(NextResponse.redirect(login));
-    }
-
     // Dashboard responses are per-user: never let a shared cache hold them.
     const response = NextResponse.next();
     response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");

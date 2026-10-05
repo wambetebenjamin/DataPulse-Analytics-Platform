@@ -1,12 +1,13 @@
-/* Hero — split layout, animated preview right, WebGL globe behind it. */
+/* Hero — split layout, live preview right. Plain by design: flat background,
+   solid button, static headline. */
 
 .hero {
   position: relative;
   overflow: hidden;
   padding: 72px 0 96px;
+  border-bottom: 1px solid var(--dp-grey-200);
   background:
-    radial-gradient(1100px 520px at 78% 8%, rgba(33, 212, 253, 0.13), transparent 62%),
-    radial-gradient(760px 420px at 6% 96%, rgba(203, 12, 159, 0.07), transparent 60%),
+    radial-gradient(880px 420px at 82% 0%, rgba(33, 82, 255, 0.07), transparent 62%),
     var(--dp-background-default);
 }
 
@@ -29,28 +30,18 @@
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 14px 7px 11px;
-  border-radius: 999px;
-  background: var(--dp-white);
-  box-shadow: var(--dp-shadow-xs);
   font-size: var(--dp-size-xs);
-  font-weight: var(--dp-fw-medium);
-  color: var(--dp-dark);
-  margin-bottom: 22px;
+  font-weight: var(--dp-fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dp-grey-600);
+  margin-bottom: 18px;
 }
 
 .eyebrowDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--dp-success);
-  box-shadow: 0 0 0 3px rgba(130, 214, 22, 0.22);
+  display: none;
 }
 
-/* headline — word by word entrance, 0.09s per word */
 .headline {
   font-size: clamp(2.125rem, 5.1vw, 3.5rem);
   line-height: 1.12;
@@ -61,18 +52,8 @@
   max-width: 16ch;
 }
 
-.word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(18px);
-  animation: wordIn 560ms cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-@keyframes wordIn {
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.headlineAccent {
+  color: var(--dp-accent);
 }
 
 .sub {
@@ -113,13 +94,14 @@
 
 .primaryCta {
   color: var(--dp-white);
-  background: var(--dp-grad-info);
-  box-shadow: var(--dp-shadow-button);
+  background: #2152ff;
+  box-shadow: var(--dp-shadow-xs);
 }
 
 .primaryCta:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--dp-shadow-lg);
+  background: #1a41d8;
+  transform: translateY(-1px);
+  box-shadow: var(--dp-shadow-md);
 }
 
 .secondaryCta {
@@ -129,9 +111,9 @@
 }
 
 .secondaryCta:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--dp-shadow-md);
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .trust {
@@ -151,7 +133,7 @@
 }
 
 .trust svg {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   flex-shrink: 0;
 }
 

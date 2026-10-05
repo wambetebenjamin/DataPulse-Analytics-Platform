@@ -57,8 +57,8 @@ export default function Navbar() {
           <Link href="/login" className={styles.loginBtn}>
             Log In
           </Link>
-          <Link href="/signup" className={styles.ctaBtn}>
-            Start Free Trial
+          <Link href="/app/dashboard" className={styles.ctaBtn}>
+            Try the Dashboard
           </Link>
         </div>
 
@@ -102,8 +102,8 @@ export default function Navbar() {
           <Link href="/login" className={styles.loginBtn}>
             Log In
           </Link>
-          <Link href="/signup" className={styles.ctaBtn}>
-            Start Free Trial
+          <Link href="/app/dashboard" className={styles.ctaBtn}>
+            Try the Dashboard
           </Link>
         </div>
       </div>

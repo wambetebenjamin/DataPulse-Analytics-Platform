@@ -27,7 +27,7 @@
   font-weight: var(--dp-fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .codeError {
@@ -76,7 +76,7 @@
 }
 
 .primary {
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: #ffffff;
   box-shadow: var(--dp-shadow-button);
 }
@@ -126,7 +126,7 @@
 
 .link:hover {
   transform: translateY(-2px);
-  border-color: var(--dp-info);
+  border-color: var(--dp-accent);
 }
 
 .linkIcon {
@@ -136,8 +136,8 @@
   height: 32px;
   flex-shrink: 0;
   border-radius: var(--dp-radius-md);
-  background: rgba(23, 193, 232, 0.1);
-  color: var(--dp-info);
+  background: rgba(33, 82, 255, 0.1);
+  color: var(--dp-accent);
 }
 
 .linkName {
@@ -182,7 +182,7 @@
 }
 
 .status a {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   font-weight: var(--dp-fw-medium);
 }
 

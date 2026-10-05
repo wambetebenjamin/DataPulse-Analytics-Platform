@@ -31,7 +31,7 @@
   width: 34px;
   height: 34px;
   border-radius: var(--dp-radius-md);
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: #ffffff;
   box-shadow: var(--dp-shadow-sm);
 }
@@ -63,8 +63,8 @@
   margin-bottom: 16px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(23, 193, 232, 0.1);
-  color: var(--dp-info);
+  background: rgba(33, 82, 255, 0.1);
+  color: var(--dp-accent);
   font-size: 11px;
   font-weight: var(--dp-fw-bold);
   text-transform: uppercase;
@@ -121,7 +121,7 @@
 }
 
 .peek:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   background: var(--dp-grey-100);
 }
 
@@ -185,13 +185,13 @@
 }
 
 .checkLine a {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .link {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   font-weight: var(--dp-fw-medium);
 }
 
@@ -204,7 +204,7 @@
   min-height: 2.875rem;
   margin-top: 4px;
   border-radius: var(--dp-radius-md);
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: #ffffff;
   font-size: var(--dp-size-xs);
   font-weight: var(--dp-fw-bold);
@@ -288,7 +288,7 @@
 }
 
 .captchaNote a {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .footNote {
@@ -341,8 +341,8 @@
 }
 
 .demoBtn:hover {
-  border-color: var(--dp-info);
-  color: var(--dp-info);
+  border-color: var(--dp-accent);
+  color: var(--dp-accent);
 }
 
 /* ---------- right-hand marketing panel ---------- */
@@ -353,7 +353,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 56px clamp(32px, 4vw, 64px);
-  background: var(--dp-grad-dark);
+  background: #141727;
   color: #ffffff;
   overflow: hidden;
 }
@@ -365,7 +365,7 @@
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(33, 212, 253, 0.26), transparent 68%);
+  background: radial-gradient(circle, rgba(33, 82, 255, 0.38), transparent 68%);
 }
 
 .asideInner {

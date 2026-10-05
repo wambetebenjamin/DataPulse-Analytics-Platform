@@ -1195,3 +1195,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Model card — source snippet block (Predictions tab). */
+.codeBlock {
+  margin: 12px 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  border: 1px solid var(--dp-grey-200);
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grey-100);
+  font-size: 12px;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.codeBlock code {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  color: var(--dp-grey-900);
+}

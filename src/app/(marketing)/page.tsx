@@ -125,16 +125,16 @@ export default function HomePage() {
               Stop guessing. Start deciding.
             </h2>
             <p className={styles.ctaSub}>
-              Start a 14-day free trial of the Business plan, or explore the live demo first — no
-              login, no card, real East African sample data.
+              Open the full dashboard right now — every category is free to try once, no account
+              needed. Sign in when you want more; the demo accounts are open to use.
             </p>
             <div className={styles.ctaRow}>
-              <Link href="/signup" className={styles.ctaPrimary}>
-                Start Free Trial
+              <Link href="/app/dashboard" className={styles.ctaPrimary}>
+                Open the Dashboard
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link href="/demo" className={styles.ctaSecondary}>
-                Explore the Live Demo
+                Explore the Guided Demo
               </Link>
               <a
                 href={WHATSAPP_LINK}
