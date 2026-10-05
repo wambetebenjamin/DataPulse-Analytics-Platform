@@ -1,0 +1,180 @@
+.section {
+  padding: 64px 0 96px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.formCol {
+  padding: 32px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  border: 1px solid var(--dp-grey-200);
+  box-shadow: var(--dp-shadow-xxl);
+  min-width: 0;
+}
+
+.formTitle {
+  font-size: var(--dp-h5);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  margin-bottom: 24px;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.card {
+  padding: 28px 26px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  border: 1px solid var(--dp-grey-200);
+  box-shadow: var(--dp-shadow-xxl);
+}
+
+.cardTitle {
+  font-size: var(--dp-size-lg);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  margin-bottom: 20px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.contactList li {
+  display: flex;
+  gap: 13px;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-badge-info-bg);
+  color: var(--dp-badge-info-text);
+}
+
+.contactLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--dp-grey-500);
+  margin-bottom: 2px;
+}
+
+.contactValue {
+  display: block;
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-medium);
+  color: var(--dp-dark);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+a.contactValue:hover {
+  color: var(--dp-info);
+}
+
+.contactNote {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--dp-grey-500);
+  line-height: 1.4;
+}
+
+.waBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 2.75rem;
+  border-radius: var(--dp-radius-md);
+  background: linear-gradient(310deg, #128c7e, #25d366);
+  color: #ffffff;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: var(--dp-shadow-button);
+  transition: transform 160ms var(--dp-ease-brief);
+}
+
+.waBtn:hover {
+  transform: translateY(-2px);
+}
+
+.demoCard {
+  background: linear-gradient(310deg, #141727, #3a416f);
+  border-color: transparent;
+}
+
+.demoCard .cardTitle {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.demoIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--dp-radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  color: #21d4fd;
+  margin-bottom: 16px;
+}
+
+.demoCopy {
+  font-size: var(--dp-size-body);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+}
+
+.demoLink {
+  font-size: var(--dp-size-sm);
+  font-weight: var(--dp-fw-bold);
+  color: #21d4fd;
+}
+
+.demoLink:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 44px 0 68px;
+  }
+  .formCol {
+    padding: 22px 18px;
+  }
+  .card {
+    padding: 22px 18px;
+  }
+}

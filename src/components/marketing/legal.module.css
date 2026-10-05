@@ -1,0 +1,218 @@
+/* Shared chrome for /legal/* documents. */
+
+.layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 108px;
+  padding: 22px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+}
+
+.tocLabel {
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--dp-grey-500);
+  margin-bottom: 12px;
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tocLink {
+  display: block;
+  padding: 7px 10px;
+  border-radius: var(--dp-radius-md);
+  font-size: var(--dp-size-body);
+  line-height: 1.45;
+  color: var(--dp-text-main);
+  transition:
+    background 150ms var(--dp-ease-brief),
+    color 150ms var(--dp-ease-brief);
+}
+
+.tocLink:hover {
+  background: rgba(23, 193, 232, 0.08);
+  color: var(--dp-info);
+}
+
+.doc {
+  max-width: 76ch;
+  font-size: 1rem;
+  line-height: 1.76;
+  color: var(--dp-text-main);
+}
+
+.doc h2 {
+  margin-top: 2.4em;
+  font-size: 1.375rem;
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  color: var(--dp-dark);
+  scroll-margin-top: 110px;
+}
+
+.doc h2:first-child {
+  margin-top: 0;
+}
+
+.doc h3 {
+  margin-top: 1.8em;
+  font-size: 1.0625rem;
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  scroll-margin-top: 110px;
+}
+
+.doc p {
+  margin-top: 1em;
+}
+
+.doc strong {
+  color: var(--dp-dark);
+  font-weight: var(--dp-fw-bold);
+}
+
+.doc a {
+  color: var(--dp-info);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.doc ul,
+.doc ol {
+  margin-top: 1em;
+  padding-left: 1.35em;
+}
+
+.doc ul li {
+  list-style: disc;
+  margin-top: 0.45em;
+}
+
+.doc ol li {
+  list-style: decimal;
+  margin-top: 0.45em;
+}
+
+.doc li::marker {
+  color: var(--dp-info);
+}
+
+.callout {
+  margin-top: 1.4em;
+  padding: 18px 20px;
+  border-radius: var(--dp-radius-lg);
+  background: rgba(23, 193, 232, 0.07);
+  border-left: 3px solid var(--dp-info);
+  font-size: var(--dp-size-body);
+  line-height: 1.7;
+}
+
+.callout p {
+  margin-top: 0.7em;
+}
+
+.callout p:first-child {
+  margin-top: 0;
+}
+
+.tableWrap {
+  margin-top: 1.3em;
+  overflow-x: auto;
+  border-radius: var(--dp-radius-lg);
+  border: 1px solid var(--dp-grey-200);
+}
+
+.table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: var(--dp-size-body);
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--dp-grey-200);
+  vertical-align: top;
+}
+
+.table thead th {
+  background: var(--dp-grey-100);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dp-grey-600, #495057);
+  font-weight: var(--dp-fw-bold);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.contactCard {
+  margin-top: 2.4em;
+  padding: 24px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-grad-dark);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--dp-size-body);
+  line-height: 1.7;
+}
+
+.contactCard h3 {
+  color: #ffffff;
+  font-size: 1.0625rem;
+  font-weight: var(--dp-fw-bold);
+  margin-bottom: 10px;
+}
+
+.contactCard a {
+  color: #21d4fd;
+}
+
+.docFooterNav {
+  margin-top: 3em;
+  padding-top: 24px;
+  border-top: 1px solid var(--dp-grey-300);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: var(--dp-size-body);
+}
+
+.docFooterNav a {
+  color: var(--dp-info);
+}
+
+@media (max-width: 992px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .toc {
+    position: static;
+  }
+  .tocList {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .tocLink {
+    background: var(--dp-grey-100);
+  }
+}

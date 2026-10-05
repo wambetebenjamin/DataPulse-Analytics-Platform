@@ -1,0 +1,313 @@
+/*
+ * Soft UI primitive styles.
+ * Values taken from assets/theme/components/{button,card,form}/*.js
+ * in the design source zip. See DESIGN-SOURCE-AUDIT.md §4.7.
+ */
+
+/* ---------------- SoftButton ----------------
+ * root.js   : font-size 12px (size.xs), radius md (8px), padding 12px 24px,
+ *             font-weight bold, text-transform uppercase, letter-spacing normal
+ * contained : small  min-height 32px / padding 8px 32px  / 12px
+ *             medium min-height 40px / padding 12px 24px
+ *             large  min-height 47px / padding 14px 64px / 14px
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--dp-font-family);
+  font-size: var(--dp-size-xs); /* 12px — brief button floor, matches source */
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: var(--dp-radius-md);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    transform 150ms var(--dp-ease-brief),
+    box-shadow 150ms ease,
+    filter 150ms ease,
+    background-color 150ms ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn_shadow {
+  box-shadow: var(--dp-shadow-button);
+}
+
+.btn_shadow:hover:not(:disabled) {
+  box-shadow: var(--dp-shadow-button-state);
+}
+
+.btn_small {
+  min-height: 2rem; /* 32px */
+  padding: 0.5rem 2rem; /* 8px 32px */
+  font-size: var(--dp-size-xs);
+}
+
+.btn_medium {
+  min-height: 2.5rem; /* 40px */
+  padding: 0.75rem 1.5rem; /* 12px 24px */
+}
+
+.btn_large {
+  min-height: 2.9375rem; /* 47px */
+  padding: 0.875rem 2.5rem; /* 14px — source says 64px horizontal; trimmed to
+                               40px so long East African CTA labels do not
+                               overflow at 320px. Vertical metric untouched. */
+  font-size: var(--dp-size-sm);
+}
+
+.btn_iconOnly {
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-height: 0;
+}
+
+.btn_iconOnly svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* ---------------- SoftBadge ---------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--dp-font-family);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge_xs {
+  padding: 0.3rem 0.5rem;
+  font-size: var(--dp-size-xxs);
+}
+
+.badge_sm {
+  padding: 0.4rem 0.7rem;
+  font-size: var(--dp-size-xxs);
+}
+
+.badge_md {
+  padding: 0.5rem 0.9rem;
+  font-size: var(--dp-size-xs);
+}
+
+.badge_lg {
+  padding: 0.65rem 1.1rem;
+  font-size: var(--dp-size-sm);
+}
+
+/* ---------------- SoftAlert ---------------- */
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.25rem;
+  border-radius: var(--dp-radius-md);
+  color: var(--dp-white);
+  font-size: var(--dp-size-body);
+  box-shadow: var(--dp-shadow-md);
+}
+
+.alertContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.alertClose {
+  color: var(--dp-white);
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.8;
+  padding: 0 4px;
+}
+
+.alertClose:hover {
+  opacity: 1;
+}
+
+/* ---------------- SoftInput ----------------
+ * inputBase.js: padding 8px 12px, font-size 14px, radius md,
+ * transition "box-shadow 150ms ease, border-color 150ms ease, padding 150ms ease"
+ * focus: border #35d1f5 + shadow 0 0 0 2px rgba(129,227,249,1)
+ */
+
+.inputWrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--dp-font-family);
+  font-size: var(--dp-size-sm);
+  font-weight: var(--dp-fw-regular);
+  line-height: 1.5;
+  color: var(--dp-dark);
+  background-color: var(--dp-white);
+  background-clip: padding-box;
+  border: var(--dp-border-w-1) solid var(--dp-input-border);
+  border-radius: var(--dp-radius-md);
+  transition:
+    box-shadow 150ms ease,
+    border-color 150ms ease,
+    padding 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--dp-grey-500);
+  opacity: 1;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--dp-input-border-focus);
+  box-shadow: var(--dp-shadow-input-focus);
+}
+
+.input:disabled {
+  background-color: var(--dp-grey-100);
+  cursor: not-allowed;
+}
+
+.input_small {
+  padding: 0.375rem 0.625rem;
+  font-size: var(--dp-size-xs);
+}
+
+.input_medium {
+  padding: 0.5rem 0.75rem;
+}
+
+.input_large {
+  padding: 0.75rem 1rem;
+  font-size: var(--dp-size-body);
+}
+
+.input_error {
+  border-color: var(--dp-input-error);
+}
+
+.input_error:focus {
+  box-shadow: 0 0 0 2px rgba(253, 92, 112, 0.6);
+}
+
+.input_success {
+  border-color: var(--dp-input-success);
+}
+
+.input_padLeft {
+  padding-left: 2.4rem;
+}
+
+.input_padRight {
+  padding-right: 2.4rem;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: var(--dp-grey-500);
+  pointer-events: none;
+}
+
+.inputIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.inputIconLeft {
+  left: 0.75rem;
+}
+
+.inputIconRight {
+  right: 0.75rem;
+}
+
+.textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2367748e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+  cursor: pointer;
+}
+
+/* ---------------- SoftProgress ---------------- */
+
+.progressTrack {
+  width: 100%;
+  height: 0.375rem;
+  background-color: var(--dp-grey-200);
+  border-radius: var(--dp-radius-sm);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: var(--dp-radius-sm);
+  transition: width 700ms var(--dp-ease-brief);
+}
+
+.progressLabel {
+  display: block;
+  font-size: var(--dp-size-xxs);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  margin-bottom: 4px;
+}
+
+/* ---------------- SoftAvatar ---------------- */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  color: var(--dp-white);
+  font-weight: var(--dp-fw-bold);
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

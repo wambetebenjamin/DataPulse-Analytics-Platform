@@ -1,0 +1,122 @@
+/*
+ * Floating WhatsApp button, bottom-right on marketing pages.
+ * Brand green #25D366 (WhatsApp official) sits outside the Soft UI palette by
+ * necessity — the zip has no WhatsApp colour. Shadow/radius/timing are the
+ * source's own tokens so it still reads as part of the system.
+ */
+
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  position: relative;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(310deg, #128c7e, #25d366);
+  box-shadow: var(--dp-shadow-lg);
+  transition:
+    transform 200ms var(--dp-ease-brief),
+    box-shadow 200ms ease;
+}
+
+.fab:hover .icon {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: var(--dp-shadow-xl);
+}
+
+.pulse {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.42);
+  animation: ring 2.4s var(--dp-ease-sharp) infinite;
+  z-index: 1;
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  white-space: nowrap;
+  padding: 9px 14px;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-dark);
+  color: var(--dp-white);
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-medium);
+  box-shadow: var(--dp-shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 200ms ease,
+    transform 200ms var(--dp-ease-brief);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--dp-dark);
+}
+
+.fab:hover .tooltip,
+.fab:focus-visible .tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 768px) {
+  .fab {
+    right: 16px;
+    bottom: 88px; /* clear of the cookie banner on small screens */
+  }
+  .icon,
+  .pulse {
+    width: 52px;
+    height: 52px;
+  }
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+    opacity: 0;
+  }
+}

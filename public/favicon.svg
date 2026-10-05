@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DataPulse Analytics">
+  <defs>
+    <linearGradient id="dp-fav" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2152ff"/>
+      <stop offset="1" stop-color="#21d4fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14.3" fill="url(#dp-fav)"/>
+  <g fill="#ffffff">
+    <rect x="13.4" y="34.5" width="7.4" height="11.5" rx="2.5"/>
+    <rect x="24.1" y="28.1" width="7.4" height="17.9" rx="2.5"/>
+    <rect x="34.8" y="22.3" width="7.4" height="23.7" rx="2.5"/>
+    <rect x="45.5" y="16.5" width="7.4" height="29.5" rx="2.5"/>
+  </g>
+</svg>

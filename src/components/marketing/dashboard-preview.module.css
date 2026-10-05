@@ -1,0 +1,357 @@
+/* Animated dashboard preview inside a styled browser frame. */
+
+.float {
+  animation: floaty 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.25deg);
+  }
+  50% {
+    transform: translateY(-13px) rotate(0.25deg);
+  }
+}
+
+.frame {
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- browser chrome ---------- */
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--dp-grey-100);
+  border-bottom: 1px solid var(--dp-grey-200);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.dots i:nth-child(1) {
+  background: #ff5f57;
+}
+.dots i:nth-child(2) {
+  background: #febc2e;
+}
+.dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.url {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  padding: 5px 12px;
+  background: var(--dp-white);
+  border-radius: 999px;
+  font-size: 11px; /* metadata floor */
+  color: var(--dp-grey-600);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lock {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--dp-success);
+  flex-shrink: 0;
+}
+
+.liveTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--dp-badge-success-bg);
+  color: var(--dp-badge-success-text);
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* ---------- body ---------- */
+
+.body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  background: var(--dp-background-default);
+}
+
+.kpiRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+}
+
+.kpiMain {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px 16px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grad-dark);
+  color: var(--dp-white);
+  box-shadow: var(--dp-shadow-md);
+}
+
+.kpiLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.kpiValue {
+  font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  animation: valueIn 500ms var(--dp-ease-brief);
+}
+
+@keyframes valueIn {
+  from {
+    opacity: 0.35;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.kpiDelta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: var(--dp-fw-medium);
+  color: #98ec2d;
+}
+
+.kpiDelta[data-positive="false"] {
+  color: #ff667c;
+}
+
+.kpiSide {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.miniStat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 13px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+}
+
+.miniLabel {
+  font-size: 11px;
+  color: var(--dp-grey-500);
+  white-space: nowrap;
+}
+
+.miniValue {
+  font-size: var(--dp-size-md);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- chart cards ---------- */
+
+.chartCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+  min-width: 0;
+}
+
+.chartHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chartTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+}
+
+.chartBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--dp-badge-info-bg);
+  color: var(--dp-badge-info-text);
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  white-space: nowrap;
+}
+
+.chartBody {
+  height: 118px;
+}
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--dp-chart-tick);
+}
+
+.bottomRow {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 12px;
+}
+
+.barBody {
+  height: 84px;
+}
+
+/* ---------- alerts ---------- */
+
+.alertCard {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+  min-width: 0;
+}
+
+.alertList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alertList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--dp-text-main);
+}
+
+.alertDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.alertList li[data-sev="critical"] .alertDot {
+  background: var(--dp-error);
+}
+.alertList li[data-sev="warning"] .alertDot {
+  background: var(--dp-warning);
+}
+.alertList li[data-sev="info"] .alertDot {
+  background: var(--dp-info);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 480px) {
+  .body {
+    padding: 12px;
+    gap: 10px;
+  }
+  .kpiRow {
+    grid-template-columns: 1fr;
+  }
+  .kpiSide {
+    flex-direction: row;
+  }
+  .bottomRow {
+    grid-template-columns: 1fr;
+  }
+  .chartBody {
+    height: 96px;
+  }
+}
+
+@media (max-width: 320px) {
+  .kpiSide {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float {
+    animation: none;
+  }
+  .liveDot,
+  .kpiValue {
+    animation: none;
+  }
+}

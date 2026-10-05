@@ -1,0 +1,332 @@
+/*
+ * Global stylesheet.
+ * Reproduces src/assets/theme/base/globals.js from the design source zip,
+ * plus the CssBaseline-equivalent resets MUI applied on top of it.
+ */
+
+@import "./tokens.css";
+
+/* globals.js : "*, *::before, *::after" { margin: 0; padding: 0 } */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* globals.js : html { scrollBehavior: "smooth" } */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--dp-font-family);
+  font-size: var(--dp-size-body); /* 15px brief floor */
+  font-weight: var(--dp-fw-regular);
+  line-height: var(--dp-lh-md);
+  color: var(--dp-text-main);
+  background-color: var(--dp-background-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* globals.js : a, a:link, a:visited { textDecoration: none !important } */
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* globals.js : .link colour + 150ms ease-in transition */
+a.link,
+.link,
+a.link:link,
+.link:link,
+a.link:visited,
+.link:visited {
+  color: var(--dp-dark);
+  transition: color 150ms ease-in;
+}
+
+a.link:hover,
+.link:hover,
+a.link:focus,
+.link:focus {
+  color: var(--dp-info);
+}
+
+/* typography.js heading defaults: color dark.main, weight medium */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--dp-dark);
+  font-weight: var(--dp-fw-medium);
+  font-family: var(--dp-font-family);
+}
+
+h1 {
+  font-size: var(--dp-h1);
+  line-height: var(--dp-lh-h1);
+}
+h2 {
+  font-size: var(--dp-h2);
+  line-height: var(--dp-lh-h2);
+}
+h3 {
+  font-size: var(--dp-h3);
+  line-height: var(--dp-lh-h3);
+}
+h4 {
+  font-size: var(--dp-h4);
+  line-height: var(--dp-lh-h3);
+}
+h5 {
+  font-size: var(--dp-h5);
+  line-height: var(--dp-lh-h3);
+}
+h6 {
+  font-size: var(--dp-h6);
+  line-height: var(--dp-lh-h6);
+}
+
+/* Headings wrap naturally — brief typography rule */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Visible focus for keyboard users on every interactive surface */
+:focus-visible {
+  outline: 2px solid var(--dp-info);
+  outline-offset: 2px;
+  border-radius: var(--dp-radius-sm);
+}
+
+::selection {
+  background: var(--dp-info);
+  color: var(--dp-white);
+}
+
+/* ---------- shared utility primitives ---------- */
+
+.dp-container {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+@media (max-width: 768px) {
+  .dp-container {
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: 390px) {
+  .dp-container {
+    padding-inline: 16px;
+  }
+}
+
+/* Card — reproduces theme/components/card/index.js exactly */
+.dp-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: var(--dp-white);
+  background-clip: border-box;
+  border: var(--dp-border-w-0) solid rgba(0, 0, 0, 0.125);
+  border-radius: var(--dp-radius-xl);
+  box-shadow: var(--dp-shadow-xxl);
+}
+
+.dp-eyebrow {
+  font-size: var(--dp-size-xxs);
+  font-weight: var(--dp-fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dp-info);
+}
+
+.dp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dp-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: var(--dp-dark);
+  color: var(--dp-white);
+  font-size: var(--dp-size-sm);
+  border-radius: 0 0 var(--dp-radius-md) 0;
+}
+
+.dp-skip-link:focus {
+  left: 0;
+}
+
+/* ---------- scroll reveal (brief: feature cards stagger fade up 65ms) ---------- */
+
+.dp-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 620ms var(--dp-ease-brief),
+    transform 620ms var(--dp-ease-brief);
+  transition-delay: var(--dp-reveal-delay, 0ms);
+}
+
+.dp-reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* alternate left-right fade in — use case sections */
+.dp-reveal-left {
+  opacity: 0;
+  transform: translateX(-34px);
+  transition:
+    opacity 700ms var(--dp-ease-brief),
+    transform 700ms var(--dp-ease-brief);
+}
+
+.dp-reveal-right {
+  opacity: 0;
+  transform: translateX(34px);
+  transition:
+    opacity 700ms var(--dp-ease-brief),
+    transform 700ms var(--dp-ease-brief);
+}
+
+.dp-reveal-left[data-visible="true"],
+.dp-reveal-right[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* alert cards slide in from right, 80ms stagger */
+.dp-slide-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition:
+    opacity 520ms var(--dp-ease-brief),
+    transform 520ms var(--dp-ease-brief);
+  transition-delay: var(--dp-reveal-delay, 0ms);
+}
+
+.dp-slide-right[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- recharts tuning to match the source chart configs ----------
+ * GradientLineChart/configs: y grid dashed [5,5], x grid hidden,
+ * ticks #b2b9bf at 11px, legend hidden, index-mode tooltip.
+ */
+.recharts-cartesian-axis-tick text {
+  fill: var(--dp-chart-tick);
+  font-size: 11px;
+  font-family: var(--dp-font-family);
+}
+
+.recharts-surface {
+  overflow: visible;
+}
+
+.recharts-default-tooltip {
+  border-radius: var(--dp-radius-md) !important;
+  border: none !important;
+  box-shadow: var(--dp-shadow-lg) !important;
+  font-size: var(--dp-size-xs) !important;
+}
+
+/* ---------- prefers-reduced-motion: brief requires ALL animation off ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* charts render instantly, counts show final values, no stagger, no draw-in */
+  .dp-reveal,
+  .dp-reveal-left,
+  .dp-reveal-right,
+  .dp-slide-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .recharts-line-curve,
+  .recharts-area-area {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}

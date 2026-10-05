@@ -1,0 +1,53 @@
+---
+title: "Your M-Pesa statement is an analytics goldmine you are not reading"
+description: "Till and paybill transaction records contain hourly demand patterns, customer loyalty signals and cash-flow early warnings. Here is how to extract them with the Daraja API."
+date: "2026-09-08"
+author: "Otieno Ochieng"
+authorRole: "Head of Engineering, DataPulse Analytics"
+category: "Integrations"
+tags: ["M-Pesa", "Daraja", "Payments", "Data"]
+featured: true
+---
+
+Nearly every business we onboard has years of M-Pesa transaction history, and nearly none of them have ever analysed it. The statement gets downloaded, reconciled against the books, and filed. What is thrown away in that process is one of the richest behavioural datasets a Kenyan business will ever own.
+
+## What is actually in the record
+
+Each C2B transaction carries, at minimum: a transaction ID, a timestamp to the second, an amount, a payer MSISDN (partially masked depending on your access level), a bill reference if you use paybill, and your short code. Four of those fields are analytically valuable.
+
+The timestamp alone gives you demand by hour and by weekday. We have yet to see a retail or food business whose intuition about its own peak hours matched the data. A restaurant in Kilimani was staffing for a 1pm lunch rush that, in the transaction record, actually ran from 12:10 to 12:45 and then again at 2pm — two distinct waves driven by two different office blocks.
+
+## The payer identifier is a customer ID
+
+Even masked, the payer number is stable per customer. That turns an undifferentiated pile of payments into a cohort analysis:
+
+- **New vs returning split per week.** Any first-time number is acquisition; any repeat is retention.
+- **Purchase frequency distribution.** How many customers bought once, twice, five times, twenty times.
+- **Recency.** Which previously frequent numbers have gone quiet — your churn list, available without any CRM.
+- **Customer lifetime value.** Sum of amounts per number, which lets you rank by actual contribution rather than by who is loudest.
+
+This is standard e-commerce analysis. The difference is that you get it for cash-equivalent, in-person retail, which historically was invisible.
+
+## Getting it out automatically with Daraja
+
+Safaricom's Daraja API is the supported route. The pieces that matter:
+
+1. **Register your app** on the Daraja portal to obtain a consumer key and secret for your short code.
+2. **Request an OAuth token** against `/oauth/v1/generate?grant_type=client_credentials` using HTTP Basic auth. Tokens are short-lived; cache them and refresh on expiry rather than requesting per call.
+3. **Register C2B URLs** — a validation URL and a confirmation URL — so Safaricom pushes each transaction to your endpoint as it happens, rather than you polling.
+4. **Respond quickly.** Your confirmation endpoint must return a success acknowledgement promptly. Queue the heavy work; do not do your analytics inline in the webhook handler.
+5. **Be idempotent.** Callbacks can be redelivered. Key your storage on the Safaricom transaction ID so a duplicate POST does not double-count revenue.
+
+Treat the credentials the way you would treat your bank login: server-side environment variables only, never in client code, never committed.
+
+## Three analyses to run in the first week
+
+**Hour-of-day heatmap.** Transactions bucketed by weekday and hour. Use it to set staffing and delivery windows.
+
+**Ticket size distribution.** Not the average — the full histogram. Averages conceal the two-humped pattern that most Kenyan retailers actually have, with a cluster of small daily purchases and a separate cluster of monthly bulk buys. These are two different customers and they need two different offers.
+
+**Rolling 7-day revenue versus the prior 7 days.** The simplest early warning there is. Any sustained double-digit decline shows up here two to three weeks before it is visible in a monthly report.
+
+## A note on privacy
+
+Transaction records are personal data under the Data Protection Act 2019. Analysing your own transactions for your own business purposes is legitimate, but you still owe your customers the basics: collect only what you need, keep it secure, retain it for a defined period, and never sell it on. Build that discipline in from the first script.
