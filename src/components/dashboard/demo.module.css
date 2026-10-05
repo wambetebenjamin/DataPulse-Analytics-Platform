@@ -1,0 +1,248 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- persistent CTA banner ---------- */
+
+.banner {
+  position: sticky;
+  top: 76px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 18px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grad-dark);
+  color: var(--dp-white);
+  box-shadow: var(--dp-shadow-lg);
+}
+
+.bannerIcon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--dp-radius-md);
+  background: rgba(255, 255, 255, 0.14);
+  color: #21d4fd;
+}
+
+.bannerText {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--dp-size-body);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bannerText strong {
+  color: #ffffff;
+  font-weight: var(--dp-fw-bold);
+}
+
+.bannerCta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grad-info);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: transform 150ms var(--dp-ease-brief);
+}
+
+.bannerCta:hover {
+  transform: translateY(-1px);
+}
+
+.bannerClose {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--dp-radius-sm);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bannerClose:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- toolbar ---------- */
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.toolbarTitle {
+  font-size: var(--dp-h5);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  line-height: 1.3;
+}
+
+.toolbarSub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rangeIcon {
+  display: grid;
+  place-items: center;
+  padding: 0 8px 0 6px;
+  color: var(--dp-grey-500);
+}
+
+.spin {
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- funnel rates list ---------- */
+
+.funnelRates {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--dp-grey-200);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.funnelRates li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--dp-size-body);
+}
+
+.funnelStage {
+  color: var(--dp-text-main);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.funnelRate {
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 26px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  border: 1px dashed var(--dp-grey-300);
+}
+
+.footerNote {
+  flex: 1;
+  min-width: 260px;
+  font-size: var(--dp-size-body);
+  line-height: 1.6;
+  color: var(--dp-text-main);
+  max-width: 72ch;
+}
+
+.footerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 2.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grad-info);
+  color: #ffffff;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: var(--dp-shadow-button);
+  white-space: nowrap;
+  transition: transform 160ms var(--dp-ease-brief);
+}
+
+.footerCta:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 992px) {
+  .banner {
+    top: 68px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-wrap: wrap;
+    position: static;
+  }
+  .bannerText {
+    flex-basis: calc(100% - 100px);
+  }
+  .bannerCta {
+    flex: 1;
+    justify-content: center;
+  }
+  .toolbar {
+    align-items: flex-start;
+  }
+  .toolbarRight {
+    width: 100%;
+  }
+  .toolbarRight > div {
+    flex: 1;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px;
+  }
+  .footerCta {
+    width: 100%;
+    justify-content: center;
+  }
+}

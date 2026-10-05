@@ -1,0 +1,234 @@
+/* /features — deep feature catalogue. */
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+
+.group {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.groupHead {
+  position: sticky;
+  top: 108px;
+}
+
+.groupIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grad-info);
+  color: #ffffff;
+  box-shadow: var(--dp-shadow-md);
+  margin-bottom: 16px;
+}
+
+.group:nth-child(2) .groupIcon {
+  background: var(--dp-grad-primary);
+}
+
+.group:nth-child(3) .groupIcon {
+  background: var(--dp-grad-success);
+}
+
+.group:nth-child(4) .groupIcon {
+  background: var(--dp-grad-dark);
+}
+
+.groupTitle {
+  font-size: var(--dp-h4);
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--dp-dark);
+}
+
+.groupCopy {
+  margin-top: 12px;
+  font-size: var(--dp-size-body);
+  line-height: 1.7;
+  color: var(--dp-text-main);
+  max-width: 44ch;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 24px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+  transition:
+    transform 220ms var(--dp-ease-brief),
+    box-shadow 220ms var(--dp-ease-brief);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--dp-shadow-xl);
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--dp-radius-md);
+  background: rgba(23, 193, 232, 0.1);
+  color: var(--dp-info);
+  margin-bottom: 14px;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.35;
+  color: var(--dp-dark);
+}
+
+.cardCopy {
+  margin-top: 8px;
+  font-size: var(--dp-size-body);
+  line-height: 1.62;
+  color: var(--dp-text-main);
+}
+
+/* ---------- comparison / capability matrix ---------- */
+
+.matrixWrap {
+  overflow-x: auto;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-xxl);
+}
+
+.matrix {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.matrix th,
+.matrix td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: var(--dp-size-body);
+  border-bottom: 1px solid var(--dp-grey-200);
+}
+
+.matrix thead th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dp-grey-500);
+  font-weight: var(--dp-fw-bold);
+  background: var(--dp-grey-100);
+  border-bottom: 1px solid var(--dp-grey-300);
+}
+
+.matrix tbody th {
+  font-weight: var(--dp-fw-medium);
+  color: var(--dp-dark);
+}
+
+.matrix td {
+  text-align: center;
+  color: var(--dp-text-main);
+}
+
+.matrix tbody tr:last-child th,
+.matrix tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.yes {
+  color: var(--dp-success);
+}
+
+.no {
+  color: var(--dp-grey-400);
+}
+
+/* ---------- integration strip ---------- */
+
+.integrations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.integration {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-sm);
+  border: 1px solid var(--dp-grey-200);
+}
+
+.integrationIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grey-100);
+  color: var(--dp-dark);
+}
+
+.integrationName {
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-medium);
+  color: var(--dp-dark);
+}
+
+.integrationNote {
+  font-size: 11px;
+  color: var(--dp-grey-500);
+  margin-top: 2px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1200px) {
+  .group {
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 992px) {
+  .group {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .groupHead {
+    position: static;
+  }
+  .groupCopy {
+    max-width: 66ch;
+  }
+}
+
+@media (max-width: 768px) {
+  .groups {
+    gap: 52px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

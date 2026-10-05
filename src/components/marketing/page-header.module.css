@@ -1,0 +1,72 @@
+/* Shared inner-page header band. */
+
+.header {
+  position: relative;
+  padding: 72px 0 56px;
+  background:
+    radial-gradient(900px 400px at 72% 0%, rgba(33, 212, 253, 0.14), transparent 62%),
+    var(--dp-background-default);
+  border-bottom: 1px solid var(--dp-grey-200);
+}
+
+.title {
+  margin: 12px 0 16px;
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--dp-dark);
+  max-width: 20ch;
+}
+
+.titleWide {
+  max-width: 26ch;
+}
+
+.lede {
+  font-size: clamp(1rem, 1.7vw, 1.125rem);
+  line-height: 1.68;
+  color: var(--dp-text-main);
+  max-width: 62ch;
+}
+
+.meta {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--dp-grey-500);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--dp-grey-500);
+}
+
+.breadcrumb a:hover {
+  color: var(--dp-info);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 48px 0 40px;
+  }
+  .title {
+    max-width: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .header {
+    padding: 36px 0 32px;
+  }
+}

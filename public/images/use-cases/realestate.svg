@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Real Estate Agencies">
+  <defs>
+    <linearGradient id="g-use-cases-realestate" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7928ca"/>
+      <stop offset="100%" stop-color="#ff0080"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#g-use-cases-realestate)"/>
+  <rect x="70" y="400" width="34" height="30" rx="6" fill="#ffffff" opacity="0.18"/><rect x="128" y="347" width="34" height="83" rx="6" fill="#ffffff" opacity="0.30"/><rect x="186" y="294" width="34" height="136" rx="6" fill="#ffffff" opacity="0.42"/><rect x="244" y="391" width="34" height="39" rx="6" fill="#ffffff" opacity="0.54"/><rect x="302" y="338" width="34" height="92" rx="6" fill="#ffffff" opacity="0.18"/><rect x="360" y="285" width="34" height="145" rx="6" fill="#ffffff" opacity="0.30"/><rect x="418" y="382" width="34" height="48" rx="6" fill="#ffffff" opacity="0.42"/><rect x="476" y="329" width="34" height="101" rx="6" fill="#ffffff" opacity="0.54"/><rect x="534" y="276" width="34" height="154" rx="6" fill="#ffffff" opacity="0.18"/><rect x="592" y="373" width="34" height="57" rx="6" fill="#ffffff" opacity="0.30"/><rect x="650" y="320" width="34" height="110" rx="6" fill="#ffffff" opacity="0.42"/>
+  <polyline points="87,330 145,300 203,318 261,262 319,280 377,222 435,244 493,190 551,208 609,156 667,174" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+  <text x="70" y="90" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.4" fill="#ffffff" opacity="0.72">DATAPULSE ANALYTICS</text>
+  <text x="70" y="140" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="38" font-weight="700" fill="#ffffff">Real Estate Agencies</text>
+</svg>

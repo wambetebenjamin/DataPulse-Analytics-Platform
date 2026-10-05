@@ -1,0 +1,236 @@
+/*
+=========================================================
+* DataPulse Analytics Platform — design tokens
+=========================================================
+* Ported 1:1 from the uploaded design source:
+*   soft-ui-dashboard-react-1.0.0.zip
+*   src/assets/theme/base/{colors,typography,borders,boxShadows,breakpoints,globals}.js
+*
+* The source expressed these as a MUI theme object in JavaScript and shipped
+* ZERO css files. Every hex, shadow, radius and type step below is the source
+* value unchanged. pxToRem(n) = n/16rem is preserved.
+* See DESIGN-SOURCE-AUDIT.md §4 and §5.
+=========================================================
+*/
+
+:root {
+  /* ---------- colors.js : base ---------- */
+  --dp-background-default: #f8f9fa;
+  --dp-text-main: #67748e;
+  --dp-text-focus: #67748e;
+  --dp-transparent: transparent;
+  --dp-white: #ffffff;
+  --dp-white-focus: #ffffff;
+  --dp-black-light: #141414;
+  --dp-black: #000000;
+
+  --dp-primary: #cb0c9f;
+  --dp-primary-focus: #ad0a87;
+  --dp-secondary: #8392ab;
+  --dp-secondary-focus: #96a2b8;
+  --dp-info: #17c1e8;
+  --dp-info-focus: #3acaeb;
+  --dp-success: #82d616;
+  --dp-success-focus: #95dc39;
+  --dp-warning: #fbcf33;
+  --dp-warning-focus: #fcd652;
+  --dp-error: #ea0606;
+  --dp-error-focus: #c70505;
+  --dp-light: #e9ecef;
+  --dp-light-focus: #e9ecef;
+  --dp-dark: #344767;
+  --dp-dark-focus: #344767;
+
+  /* ---------- colors.js : grey scale ---------- */
+  --dp-grey-100: #f8f9fa;
+  --dp-grey-200: #e9ecef;
+  --dp-grey-300: #dee2e6;
+  --dp-grey-400: #ced4da;
+  --dp-grey-500: #adb5bd;
+  --dp-grey-600: #6c757d;
+  --dp-grey-700: #495057;
+  --dp-grey-800: #343a40;
+  --dp-grey-900: #212529;
+
+  /* ---------- colors.js : gradients (main -> state) ---------- */
+  --dp-gradient-primary-main: #7928ca;
+  --dp-gradient-primary-state: #ff0080;
+  --dp-gradient-secondary-main: #627594;
+  --dp-gradient-secondary-state: #a8b8d8;
+  --dp-gradient-info-main: #2152ff;
+  --dp-gradient-info-state: #21d4fd;
+  --dp-gradient-success-main: #17ad37;
+  --dp-gradient-success-state: #98ec2d;
+  --dp-gradient-warning-main: #f53939;
+  --dp-gradient-warning-state: #fbcf33;
+  --dp-gradient-error-main: #ea0606;
+  --dp-gradient-error-state: #ff667c;
+  --dp-gradient-light-main: #ced4da;
+  --dp-gradient-light-state: #ebeff4;
+  --dp-gradient-dark-main: #141727;
+  --dp-gradient-dark-state: #3a416f;
+
+  /* linearGradient(color, state, angle = 310) */
+  --dp-grad-primary: linear-gradient(310deg, #7928ca, #ff0080);
+  --dp-grad-secondary: linear-gradient(310deg, #627594, #a8b8d8);
+  --dp-grad-info: linear-gradient(310deg, #2152ff, #21d4fd);
+  --dp-grad-success: linear-gradient(310deg, #17ad37, #98ec2d);
+  --dp-grad-warning: linear-gradient(310deg, #f53939, #fbcf33);
+  --dp-grad-error: linear-gradient(310deg, #ea0606, #ff667c);
+  --dp-grad-light: linear-gradient(310deg, #ced4da, #ebeff4);
+  --dp-grad-dark: linear-gradient(310deg, #141727, #3a416f);
+
+  /* ---------- colors.js : badgeColors (background / text) ---------- */
+  --dp-badge-primary-bg: #f883dd;
+  --dp-badge-primary-text: #a3017e;
+  --dp-badge-secondary-bg: #e4e8ed;
+  --dp-badge-secondary-text: #5974a2;
+  --dp-badge-info-bg: #abe9f7;
+  --dp-badge-info-text: #08a1c4;
+  --dp-badge-success-bg: #cdf59b;
+  --dp-badge-success-text: #67b108;
+  --dp-badge-warning-bg: #fef5d3;
+  --dp-badge-warning-text: #fbc400;
+  --dp-badge-error-bg: #fc9797;
+  --dp-badge-error-text: #bd0000;
+  --dp-badge-light-bg: #ffffff;
+  --dp-badge-light-text: #c7d3de;
+  --dp-badge-dark-bg: #8097bf;
+  --dp-badge-dark-text: #1e2e4a;
+
+  /* ---------- colors.js : alertColors (main / state / border) ---------- */
+  --dp-alert-info-main: #2152ff;
+  --dp-alert-info-state: #02c6f3;
+  --dp-alert-info-border: #b9ecf8;
+  --dp-alert-success-main: #17ad37;
+  --dp-alert-success-state: #84dc14;
+  --dp-alert-success-border: #daf3b9;
+  --dp-alert-warning-main: #f53939;
+  --dp-alert-warning-state: #fac60b;
+  --dp-alert-warning-border: #fef1c2;
+  --dp-alert-error-main: #ea0606;
+  --dp-alert-error-state: #ff3d59;
+  --dp-alert-error-border: #f9b4b4;
+  --dp-alert-dark-main: #141727;
+  --dp-alert-dark-state: #2c3154;
+  --dp-alert-dark-border: #c2c8d1;
+  --dp-alert-secondary-main: #627594;
+  --dp-alert-secondary-state: #8ca1cb;
+  --dp-alert-secondary-border: #dadee6;
+  --dp-alert-primary-main: #7928ca;
+  --dp-alert-primary-state: #d6006c;
+  --dp-alert-primary-border: #efb6e2;
+
+  /* ---------- colors.js : inputs & misc ---------- */
+  --dp-input-border: #d2d6da;
+  --dp-input-border-focus: #35d1f5;
+  --dp-input-shadow: #81e3f9;
+  --dp-input-error: #fd5c70;
+  --dp-input-success: #66d432;
+  --dp-slider-thumb-border: #d9d9d9;
+  --dp-circle-slider-bg: #d3d3d3;
+  --dp-tabs-indicator-shadow: #ddd;
+
+  /* chart axis tick colour — fingerprint of the source chart configs */
+  --dp-chart-tick: #b2b9bf;
+
+  /* ---------- borders.js ---------- */
+  --dp-border-color: #dee2e6; /* grey[300] */
+  --dp-border-w-0: 0;
+  --dp-border-w-1: 0.0625rem; /* 1px */
+  --dp-border-w-2: 0.125rem;
+  --dp-border-w-3: 0.1875rem;
+  --dp-border-w-4: 0.25rem;
+  --dp-border-w-5: 0.3125rem;
+
+  --dp-radius-xs: 0.125rem; /* 2px  */
+  --dp-radius-sm: 0.25rem; /* 4px  */
+  --dp-radius-md: 0.5rem; /* 8px  */
+  --dp-radius-lg: 0.75rem; /* 12px */
+  --dp-radius-xl: 1rem; /* 16px */
+  --dp-radius-xxl: 1.5rem; /* 24px */
+  --dp-radius-section: 10rem; /* 160px */
+
+  /* ---------- boxShadows.js ---------- */
+  --dp-shadow-xs: 0 0.125rem 0.5625rem -0.3125rem rgba(0, 0, 0, 0.15);
+  --dp-shadow-sm: 0 0.3125rem 0.625rem 0 rgba(0, 0, 0, 0.12);
+  --dp-shadow-md: 0 0.25rem 0.375rem -0.0625rem rgba(20, 20, 20, 0.12),
+    0 0.125rem 0.25rem -0.0625rem rgba(20, 20, 20, 0.07);
+  --dp-shadow-lg: 0 0.5rem 1.625rem -0.25rem rgba(20, 20, 20, 0.15),
+    0 0.5rem 0.5625rem -0.3125rem rgba(20, 20, 20, 0.06);
+  --dp-shadow-xl: 0 1.4375rem 2.8125rem -0.6875rem rgba(20, 20, 20, 0.25);
+  --dp-shadow-xxl: 0 1.25rem 1.6875rem 0 rgba(0, 0, 0, 0.05);
+  --dp-shadow-inset: inset 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.075);
+  --dp-shadow-navbar: inset 0 0 0.0625rem 0.0625rem rgba(255, 255, 255, 0.9),
+    0 1.25rem 1.6875rem 0 rgba(0, 0, 0, 0.05);
+  --dp-shadow-button: 0 0.25rem 0.4375rem -0.0625rem rgba(0, 0, 0, 0.11),
+    0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.07);
+  --dp-shadow-button-state: 0 0.1875rem 0.3125rem -0.0625rem rgba(0, 0, 0, 0.09),
+    0 0.125rem 0.3125rem -0.0625rem rgba(0, 0, 0, 0.07);
+  --dp-shadow-input-focus: 0 0 0 0.125rem rgba(129, 227, 249, 1);
+
+  /* ---------- typography.js ---------- */
+  --dp-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  --dp-fw-light: 300;
+  --dp-fw-regular: 400;
+  --dp-fw-medium: 500;
+  --dp-fw-bold: 700;
+
+  /*
+   * Source scale kept verbatim, EXCEPT where the brief's accessibility floors
+   * are stricter than the source (see DESIGN-SOURCE-AUDIT.md §15):
+   *   body >= 15px, metadata >= 11px, navigation 13px, buttons 12px.
+   * Source caption was 12px and size.xxs was 10.4px -> raised to the 11px floor.
+   */
+  --dp-size-xxs: 0.6875rem; /* 11px — brief metadata floor (source: 10.4px) */
+  --dp-size-xs: 0.75rem; /* 12px — buttons */
+  --dp-size-nav: 0.8125rem; /* 13px — navigation */
+  --dp-size-sm: 0.875rem; /* 14px */
+  --dp-size-body: 0.9375rem; /* 15px — brief body floor */
+  --dp-size-md: 1rem; /* 16px */
+  --dp-size-lg: 1.125rem; /* 18px */
+  --dp-size-xl: 1.25rem; /* 20px */
+
+  --dp-h1: 3rem; /* 48 */
+  --dp-h2: 2.25rem; /* 36 */
+  --dp-h3: 1.875rem; /* 30 */
+  --dp-h4: 1.5rem; /* 24 */
+  --dp-h5: 1.25rem; /* 20 */
+  --dp-h6: 1rem; /* 16 */
+  --dp-d1: 5rem; /* 80 */
+  --dp-d2: 4.5rem; /* 72 */
+  --dp-d3: 4rem; /* 64 */
+  --dp-d4: 3.5rem; /* 56 */
+  --dp-d5: 3rem; /* 48 */
+  --dp-d6: 2.5rem; /* 40 */
+
+  --dp-lh-sm: 1.25;
+  --dp-lh-md: 1.5;
+  --dp-lh-lg: 2;
+  --dp-lh-h1: 1.25;
+  --dp-lh-h2: 1.3;
+  --dp-lh-h3: 1.375;
+  --dp-lh-h6: 1.625;
+
+  /* ---------- layout (SidenavRoot.js) ---------- */
+  --dp-sidenav-width: 250px;
+  --dp-sidenav-mini: 96px;
+  --dp-navbar-height: 4.375rem;
+
+  /* ---------- motion (brief animation direction) ---------- */
+  --dp-ease-brief: cubic-bezier(0.25, 1, 0.5, 1);
+  --dp-ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+  --dp-dur-shorter: 200ms;
+  --dp-dur-standard: 300ms;
+  --dp-dur-entering: 225ms;
+  --dp-word-stagger: 0.09s;
+  --dp-feature-stagger: 65ms;
+  --dp-alert-stagger: 80ms;
+  --dp-countup: 800ms;
+}
+
+/*
+ * breakpoints.js — Bootstrap-style, NOT MUI defaults.
+ * xs 0 · sm 576 · md 768 · lg 992 · xl 1200 · xxl 1400
+ * Exposed as documentation; media queries use the literal px values.
+ */

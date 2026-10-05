@@ -1,0 +1,46 @@
+---
+title: "Sales forecasting without a data scientist"
+description: "Linear regression and moving averages are enough to forecast most SME revenue. We explain both methods, when each fails, and why a confidence band matters more than the line itself."
+date: "2026-08-19"
+author: "Amina Hassan"
+authorRole: "Lead Data Scientist, DataPulse Analytics"
+category: "Predictive Analytics"
+tags: ["Forecasting", "Statistics", "Planning"]
+featured: false
+---
+
+There is a persistent belief that forecasting requires machine learning. For a business with two or three years of daily sales history, it does not. Two techniques that predate computers will get you most of the available accuracy, and crucially, you will understand what they are doing.
+
+## Moving averages: the honest baseline
+
+A simple moving average takes the last *n* periods and averages them. A 7-day moving average smooths out the weekday effect; a 30-day one smooths out the pay-cycle effect that dominates Kenyan retail, where the last week of the month looks nothing like the second.
+
+Its weakness is that it cannot see a trend. If you are growing 4% a month, the moving average will consistently under-forecast, because it is anchored to a past that was smaller. Use it to establish a floor and to detect anomalies, not to plan growth.
+
+## Linear regression: adding direction
+
+Fit a straight line through your historical points, where x is the day index and y is revenue. The slope tells you the daily trend; extend the line forward to project.
+
+> y = mx + c, where m = Σ((x − x̄)(y − ȳ)) ÷ Σ((x − x̄)²)
+
+This is the method behind the 30, 60 and 90-day projections in DataPulse. It assumes the trend is roughly linear over the projection window, which for a three-month horizon is usually defensible and for a three-year horizon is not.
+
+## Why the confidence band is the real output
+
+A single forecast line is a lie of precision. The honest output is a range. Calculate the standard error of your regression residuals and plot the band at roughly ±1.96 standard errors for a 95% interval.
+
+What this does to decision-making is the whole point. "Next month will be KES 1.8M" invites a plan that breaks the moment reality lands at 1.6M. "Next month is most likely between KES 1.55M and 2.05M" invites a plan that survives both ends. We draw the band on every projection and we label every projection an estimate, because that is what it is.
+
+## Where these methods break
+
+**Seasonality your window cannot see.** If you run a coastal hotel, a 90-day regression fitted in April will tell you nothing useful about December. You need either a full year of history with a seasonal decomposition, or explicit seasonal adjustment factors derived from prior years.
+
+**Step changes.** Opening a second branch, losing a major client, or a competitor closing are structural breaks. Regression will smear the step across the whole line. Refit from the break point rather than through it.
+
+**Sparse, lumpy data.** B2B firms with eight invoices a month should not fit a daily regression. Model at the level your transactions actually occur.
+
+**Shock events.** No model extrapolates its way through a currency move, a fuel levy or a national disruption. When the residuals blow out, that is the model telling you it is out of its depth. Listen to it.
+
+## A practical routine
+
+Refit monthly. Compare last month's forecast against what actually happened and record the error. After six months you will have a personal track record for your own forecast accuracy — and that number, your mean absolute percentage error, is more valuable than any individual projection, because it tells you exactly how much to trust the next one.

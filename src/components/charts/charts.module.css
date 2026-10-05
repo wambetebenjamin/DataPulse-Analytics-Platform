@@ -1,0 +1,152 @@
+/* Chart chrome: tooltip, legend, donut centre, forecast draw-in. */
+
+.tooltip {
+  background: var(--dp-white);
+  border-radius: var(--dp-radius-md);
+  box-shadow: var(--dp-shadow-lg);
+  padding: 10px 13px;
+  min-width: 150px;
+}
+
+.tooltipLabel {
+  font-size: 11px; /* metadata floor */
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dp-grey-500);
+  margin-bottom: 7px;
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--dp-size-xs);
+  line-height: 1.7;
+}
+
+.tooltipDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tooltipName {
+  color: var(--dp-text-main);
+  flex: 1;
+  white-space: nowrap;
+}
+
+.tooltipValue {
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- legend ---------- */
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--dp-size-body);
+}
+
+.legendDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  flex: 1;
+  color: var(--dp-text-main);
+  min-width: 0;
+}
+
+.legendValue {
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- donut ---------- */
+
+.donutWrap {
+  position: relative;
+  width: 100%;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.donutValue {
+  font-size: var(--dp-h4);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  line-height: 1.1;
+}
+
+.donutLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--dp-grey-500);
+}
+
+/* ---------- forecast line draw-in ----------
+ * Brief: "Prediction forecast line: dashes animate in from the last data
+ * point extending rightward, 1s ease-out."
+ */
+
+.forecastLine {
+  stroke-dasharray: 7 6;
+  animation: dashDraw 1s ease-out both;
+}
+
+@keyframes dashDraw {
+  from {
+    stroke-dashoffset: 520;
+    opacity: 0.25;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forecastLine {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- mobile simplification ---------- */
+
+@media (max-width: 480px) {
+  .tooltip {
+    min-width: 128px;
+    padding: 8px 10px;
+  }
+  .donutValue {
+    font-size: var(--dp-h5);
+  }
+}

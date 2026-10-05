@@ -1,0 +1,125 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 22px 20px;
+  border-radius: var(--dp-radius-xl);
+  background: var(--dp-background-default);
+  border: 1px solid var(--dp-grey-200);
+  transition:
+    transform 230ms var(--dp-ease-brief),
+    box-shadow 230ms ease,
+    border-color 230ms ease,
+    background-color 230ms ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: var(--dp-white);
+  border-color: rgba(23, 193, 232, 0.42);
+  box-shadow: var(--dp-shadow-lg);
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  color: var(--dp-info);
+  box-shadow: var(--dp-shadow-xs);
+  transition:
+    background-color 230ms ease,
+    color 230ms ease,
+    transform 230ms var(--dp-ease-brief);
+}
+
+.card:hover .icon {
+  background: var(--dp-grad-info);
+  color: var(--dp-white);
+  transform: scale(1.06);
+}
+
+.name {
+  font-size: var(--dp-size-md);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  line-height: 1.35;
+}
+
+.metrics {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dp-grey-500);
+}
+
+.arrow {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  color: var(--dp-grey-400);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition:
+    opacity 220ms ease,
+    transform 220ms var(--dp-ease-brief);
+}
+
+.card:hover .arrow {
+  opacity: 1;
+  transform: none;
+  color: var(--dp-info);
+}
+
+.footer {
+  margin-top: 34px;
+  text-align: center;
+}
+
+.allLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--dp-size-sm);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--dp-info);
+  transition: gap 200ms var(--dp-ease-brief);
+}
+
+.allLink:hover {
+  gap: 13px;
+  color: var(--dp-dark);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .card {
+    padding: 18px 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

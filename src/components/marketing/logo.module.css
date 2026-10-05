@@ -1,0 +1,33 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mark {
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(33, 82, 255, 0.22));
+}
+
+.text {
+  font-size: 1.125rem;
+  font-weight: var(--dp-fw-light);
+  letter-spacing: -0.01em;
+  color: var(--dp-dark);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.text strong {
+  font-weight: var(--dp-fw-bold);
+}
+
+.logo[data-light="true"] .text {
+  color: var(--dp-white);
+}
+
+@media (max-width: 390px) {
+  .text {
+    font-size: 1rem;
+  }
+}

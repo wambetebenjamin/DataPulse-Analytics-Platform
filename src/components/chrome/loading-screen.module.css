@@ -1,0 +1,224 @@
+/* Loading screen — brief fallback spec (no loading screen existed in the zip). */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  /* dark gradient from colors.js gradients.dark: #141727 -> #3a416f @310deg */
+  background: linear-gradient(310deg, #141727, #3a416f);
+  opacity: 1;
+  transition: opacity 260ms var(--dp-ease-brief);
+}
+
+.screen[data-exiting="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- background data columns ---------- */
+
+.columns {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(8px, 2.4vw, 26px);
+  padding: 0 24px 8vh;
+  opacity: 0.22;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: var(--col-h);
+  flex: 0 1 44px;
+  animation: columnRise 620ms var(--dp-ease-brief) both;
+  animation-delay: var(--col-delay);
+}
+
+.columnValue {
+  font-size: 11px; /* brief metadata floor */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: #21d4fd;
+  white-space: nowrap;
+}
+
+.columnBar {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 10px;
+  border-radius: var(--dp-radius-sm) var(--dp-radius-sm) 0 0;
+  background: linear-gradient(180deg, #21d4fd 0%, rgba(33, 82, 255, 0.1) 100%);
+}
+
+@keyframes columnRise {
+  from {
+    transform: scaleY(0.1);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.column {
+  transform-origin: bottom;
+}
+
+/* ---------- centre stack ---------- */
+
+.center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* wordmark fades in */
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeInUp 420ms var(--dp-ease-brief) both;
+}
+
+.mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 26px;
+}
+
+.markBar {
+  display: block;
+  width: 5px;
+  border-radius: 2px;
+  background: #21d4fd;
+}
+
+.markBar:nth-child(1) {
+  height: 40%;
+  animation: pulseBar 900ms 0ms infinite var(--dp-ease-sharp);
+}
+.markBar:nth-child(2) {
+  height: 72%;
+  animation: pulseBar 900ms 140ms infinite var(--dp-ease-sharp);
+}
+.markBar:nth-child(3) {
+  height: 100%;
+  background: #ffffff;
+  animation: pulseBar 900ms 280ms infinite var(--dp-ease-sharp);
+}
+
+@keyframes pulseBar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.55);
+  }
+}
+
+.markBar {
+  transform-origin: bottom;
+}
+
+.wordmarkText {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: var(--dp-fw-light);
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.wordmarkText strong {
+  font-weight: var(--dp-fw-bold);
+}
+
+/* circular progress indicator rotates below the wordmark */
+.ring {
+  width: 38px;
+  height: 38px;
+  animation:
+    fadeIn 300ms 180ms var(--dp-ease-brief) both,
+    spin 900ms linear 180ms infinite;
+}
+
+.ringTrack {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 4;
+}
+
+.ringHead {
+  fill: none;
+  stroke: #21d4fd;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 90 126;
+}
+
+.caption {
+  font-size: 11px; /* metadata floor */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  animation: fadeIn 300ms 300ms var(--dp-ease-brief) both;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .columns {
+    gap: 7px;
+  }
+  .columnValue {
+    display: none;
+  }
+}
+
+/* brief: prefers-reduced-motion -> all animations off */
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    display: none;
+  }
+}

@@ -1,0 +1,56 @@
+---
+title: "Stop guessing reorder dates: inventory analytics for Kenyan retail"
+description: "Days-to-stockout, reorder points and supplier lead time variance — the three calculations that turn inventory from a monthly headache into a weekly routine."
+date: "2026-06-24"
+author: "Amina Hassan"
+authorRole: "Lead Data Scientist, DataPulse Analytics"
+category: "Operations"
+tags: ["Inventory", "Retail", "Supply Chain"]
+featured: false
+---
+
+Two failure modes cost retailers money, and most businesses oscillate between them: stock-outs on the fast movers, and dead capital tied up in the slow ones. Both come from the same root cause — reordering on intuition and on a calendar rather than on consumption.
+
+Three calculations fix the majority of it.
+
+## 1. Days to stock-out
+
+The headline number for every SKU.
+
+> Days to stock-out = units on hand ÷ average daily units sold
+
+Use a trailing 30-day average for the denominator, and exclude days you were closed or out of stock, otherwise you will understate true demand. Sort your catalogue by this column ascending and you have your purchasing priority list, produced automatically every morning.
+
+## 2. Reorder point
+
+Days to stock-out tells you when you run out. The reorder point tells you when to place the order so that you do not.
+
+> Reorder point = (average daily sales × supplier lead time in days) + safety stock
+
+Safety stock exists to absorb variability. A workable approximation for most SMEs is the difference between peak daily sales and average daily sales, multiplied by the lead time. For imported goods clearing through Mombasa, add explicit allowance for clearing delays — they are not noise, they are a predictable part of your lead time.
+
+## 3. Supplier lead time variance
+
+This is the one almost nobody tracks, and it is the one that determines how much safety stock you are forced to carry.
+
+Record, for every purchase order, the date ordered and the date received. After ten orders you have a mean and a spread per supplier. A supplier who averages 14 days with a spread of two is dramatically cheaper to work with than one who averages 10 days with a spread of twelve, because the second forces you to hold weeks of buffer inventory against their unreliability.
+
+Put a shilling figure on that buffer — units × unit cost — and you have a concrete negotiating position at the next supplier review.
+
+## Classify before you optimise
+
+Do not apply the same rigour to all 800 SKUs. Rank by annual revenue contribution and split:
+
+- **A items**, roughly the top 20% of SKUs driving ~80% of revenue. Review weekly, never allow a stock-out, tight reorder discipline.
+- **B items**, the middle. Review fortnightly.
+- **C items**, the long tail. Review monthly, and seriously consider whether each one earns its shelf space at all.
+
+This single classification usually reduces purchasing workload more than any software does.
+
+## Watch for the dead stock signal
+
+Any SKU with zero sales in 90 days and stock on hand is dead capital. Total it up, in shillings, and show that number on the dashboard permanently. It is uncomfortable, which is exactly why it works — it is the figure that finally triggers the clearance sale that frees up working capital.
+
+## Automating the loop
+
+None of these formulas are hard. The difficulty is that they need current stock and current sales in the same place, refreshed daily. Once your point of sale and your stock records feed one dashboard, days-to-stock-out and reorder alerts become a notification rather than a task, and purchasing stops being a monthly fire drill.
