@@ -580,6 +580,39 @@ export function forecastSummary(horizon: 30 | 60 | 90) {
   };
 }
 
+/**
+ * Diagnostics for the OLS revenue model, computed from the same 60-day window
+ * the forecast is fitted on. The Predictions tab surfaces these verbatim: the
+ * numbers on screen are the numbers this fit produced — nothing is hardcoded.
+ */
+export function forecastDiagnostics() {
+  const history = buildDailySeries(60);
+  const values = history.map((d) => d.revenue);
+  const n = values.length;
+  const { slope, intercept, sigma, meanY } = linearRegression(values);
+
+  let ssRes = 0;
+  let ssTot = 0;
+  let absPct = 0;
+  for (let i = 0; i < n; i += 1) {
+    const fitted = intercept + slope * i;
+    ssRes += (values[i] - fitted) ** 2;
+    ssTot += (values[i] - meanY) ** 2;
+    absPct += Math.abs(values[i] - fitted) / Math.max(values[i], 1);
+  }
+
+  return {
+    windowDays: n,
+    slopePerDay: slope,
+    monthlyDrift: slope * 30,
+    intercept,
+    residualSigma: sigma,
+    r2: ssTot === 0 ? 0 : 1 - ssRes / ssTot,
+    mape: absPct / n,
+    meanDailyRevenue: meanY,
+  };
+}
+
 export interface StockoutPrediction {
   product: string;
   stock: number;

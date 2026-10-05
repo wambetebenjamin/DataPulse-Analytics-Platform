@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -10,6 +10,7 @@ import {
   ChevronRight,
   HelpCircle,
   Lock,
+  LogIn,
   LogOut,
   Menu,
   MessageCircle,
@@ -19,6 +20,7 @@ import {
 import { ICONS } from "@/components/Icon";
 import { DASHBOARD_TABS, SITE, whatsappLink } from "@/data/site";
 import { ROLE_TABS, alerts, type Role } from "@/data/analytics";
+import { readTrialUsed } from "./TrialGate";
 import styles from "./shell.module.css";
 
 export interface ShellUser {
@@ -41,7 +43,7 @@ export default function DashboardShell({
   user,
   children,
 }: {
-  user: ShellUser;
+  user: ShellUser | null;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -49,7 +51,18 @@ export default function DashboardShell({
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const allowed = ROLE_TABS[user.role] ?? [];
+  /* Trial mode: which categories this browser has already spent. */
+  const [trialUsed, setTrialUsed] = useState<string[]>([]);
+  const syncTrial = useCallback(() => setTrialUsed(readTrialUsed()), []);
+
+  useEffect(() => {
+    syncTrial();
+    window.addEventListener("datapulse:trial", syncTrial);
+    return () => window.removeEventListener("datapulse:trial", syncTrial);
+  }, [syncTrial, pathname]);
+
+  // Trial visitors see everything once; signed-in users see what their role grants.
+  const allowed = user ? (ROLE_TABS[user.role] ?? []) : DASHBOARD_TABS.map((t) => t.key);
   const activeKey =
     DASHBOARD_TABS.find((tab) =>
       tab.key === "overview"
@@ -105,9 +118,17 @@ export default function DashboardShell({
           </span>
           <span className={styles.brandText}>
             {SITE.name.split(" ")[0]}
-            <span className={styles.brandSub}>{user.plan} plan</span>
+            <span className={styles.brandSub}>
+              {user ? `${user.plan} plan` : "Free trial"}
+            </span>
           </span>
         </Link>
+
+        {!user ? (
+          <p className={styles.trialNote}>
+            Every category is free to try once. Sign in to unlock them all.
+          </p>
+        ) : null}
 
         <p className={styles.navLabel}>Analytics</p>
         <nav className={styles.nav}>
@@ -115,13 +136,14 @@ export default function DashboardShell({
             const Icon = ICONS[tab.icon] ?? ICONS["bar-chart-2"];
             const href = tab.key === "overview" ? "/app/dashboard" : `/app/dashboard/${tab.key}`;
             const permitted = allowed.includes(tab.key);
+            const spent = !user && trialUsed.includes(tab.key);
 
             if (!permitted) {
               return (
                 <span
                   key={tab.key}
                   className={`${styles.navItem} ${styles.navItemLocked}`}
-                  title={`Your ${user.role} role cannot open ${tab.label}`}
+                  title={`Your ${user?.role ?? "current"} role cannot open ${tab.label}`}
                 >
                   <span className={styles.navIcon} aria-hidden="true">
                     <Icon size={15} strokeWidth={2} />
@@ -138,11 +160,15 @@ export default function DashboardShell({
                 href={href}
                 className={styles.navItem}
                 aria-current={activeKey === tab.key ? "page" : undefined}
+                title={spent ? `${tab.label} — free view used, sign in to reopen` : undefined}
               >
                 <span className={styles.navIcon} aria-hidden="true">
                   <Icon size={15} strokeWidth={2} />
                 </span>
                 <span>{tab.label}</span>
+                {spent ? (
+                  <Lock size={11} className={styles.spentIcon} aria-hidden="true" />
+                ) : null}
               </Link>
             );
           })}
@@ -196,13 +222,14 @@ export default function DashboardShell({
             </Link>
 
             <div className={styles.userWrap} ref={menuRef}>
-              <button
-                type="button"
-                className={styles.user}
-                onClick={() => setMenuOpen((o) => !o)}
-                aria-expanded={menuOpen}
-                aria-haspopup="menu"
-              >
+              {user ? (
+                <button
+                  type="button"
+                  className={styles.user}
+                  onClick={() => setMenuOpen((o) => !o)}
+                  aria-expanded={menuOpen}
+                  aria-haspopup="menu"
+                >
                 <span className={styles.avatar} aria-hidden="true">
                   {initials(user.name)}
                 </span>
@@ -212,8 +239,17 @@ export default function DashboardShell({
                   <span className={styles.userRole}>{user.role}</span>
                 </span>
               </button>
+              ) : (
+                <Link
+                  href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
+                  className={styles.signInBtn}
+                >
+                  <LogIn size={14} aria-hidden="true" />
+                  Sign in
+                </Link>
+              )}
 
-              {menuOpen ? (
+              {user && menuOpen ? (
                 <div className={styles.menu} role="menu">
                   <div className={styles.menuHead}>
                     <p className={styles.menuName}>{user.name}</p>

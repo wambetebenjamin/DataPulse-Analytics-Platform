@@ -1,0 +1,165 @@
+/* Trial mode — one free view per dashboard category, then sign in. */
+
+/* ---------- banner above a category on its free view ---------- */
+
+.banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  border: 1px solid var(--dp-grey-300);
+  border-left: 3px solid var(--dp-dark);
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-white);
+  font-size: var(--dp-size-sm);
+  color: var(--dp-text-main);
+}
+
+.banner svg {
+  color: var(--dp-dark);
+  flex-shrink: 0;
+}
+
+.banner a {
+  margin-left: auto;
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.banner a:hover {
+  color: var(--dp-grey-700);
+}
+
+/* ---------- locked category ---------- */
+
+.locked {
+  max-width: 560px;
+  margin: 48px auto;
+  padding: 40px 36px;
+  text-align: center;
+  border: 1px solid var(--dp-grey-300);
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-white);
+  box-shadow: var(--dp-shadow-sm);
+}
+
+.lockIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grey-100);
+  color: var(--dp-grey-700);
+}
+
+.lockTitle {
+  font-size: var(--dp-h4);
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.25;
+  color: var(--dp-dark);
+  margin-bottom: 12px;
+}
+
+.lockCopy {
+  font-size: var(--dp-size-body);
+  line-height: 1.65;
+  color: var(--dp-text-main);
+  margin-bottom: 24px;
+}
+
+.lockActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.lockPrimary,
+.lockSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.7rem 1.4rem;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: var(--dp-radius-md);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.lockPrimary {
+  color: var(--dp-white);
+  background: var(--dp-dark);
+}
+
+.lockPrimary:hover {
+  background: var(--dp-grey-800);
+}
+
+.lockSecondary {
+  color: var(--dp-dark);
+  border: 1px solid var(--dp-grey-400);
+  background: var(--dp-white);
+}
+
+.lockSecondary:hover {
+  background: var(--dp-grey-100);
+}
+
+/* ---------- remaining free categories ---------- */
+
+.remaining {
+  text-align: left;
+  border-top: 1px solid var(--dp-grey-200);
+  padding-top: 20px;
+}
+
+.remainingLabel {
+  font-size: var(--dp-size-xxs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--dp-grey-600);
+  margin-bottom: 10px;
+}
+
+.remaining ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.remaining a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--dp-grey-300);
+  border-radius: 999px;
+  font-size: var(--dp-size-sm);
+  color: var(--dp-dark);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.remaining a:hover {
+  background: var(--dp-grey-100);
+  border-color: var(--dp-grey-500);
+}
+
+.allUsed {
+  font-size: var(--dp-size-sm);
+  color: var(--dp-grey-600);
+  border-top: 1px solid var(--dp-grey-200);
+  padding-top: 20px;
+}

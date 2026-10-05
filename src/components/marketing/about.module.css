@@ -74,22 +74,22 @@
   width: 42px;
   height: 42px;
   border-radius: var(--dp-radius-lg);
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: #ffffff;
   margin-bottom: 16px;
   box-shadow: var(--dp-shadow-sm);
 }
 
 .value:nth-child(2) .valueIcon {
-  background: var(--dp-grad-primary);
+  background: #cb0c9f;
 }
 
 .value:nth-child(3) .valueIcon {
-  background: var(--dp-grad-success);
+  background: #17ad37;
 }
 
 .value:nth-child(4) .valueIcon {
-  background: var(--dp-grad-dark);
+  background: #141727;
 }
 
 .valueTitle {
@@ -123,7 +123,7 @@
   top: 6px;
   bottom: 6px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--dp-info), rgba(23, 193, 232, 0.08));
+  background: linear-gradient(to bottom, rgba(33, 82, 255, 0.12), rgba(33, 82, 255, 0.03));
 }
 
 .milestone {
@@ -139,8 +139,8 @@
   height: 16px;
   border-radius: 50%;
   background: var(--dp-white);
-  border: 3px solid var(--dp-info);
-  box-shadow: 0 0 0 4px rgba(23, 193, 232, 0.12);
+  border: 3px solid var(--dp-accent-line);
+  box-shadow: 0 0 0 4px rgba(33, 82, 255, 0.12);
 }
 
 .milestoneYear {
@@ -148,7 +148,7 @@
   font-weight: var(--dp-fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .milestoneTitle {
@@ -192,7 +192,7 @@
   font-size: 1.25rem;
   font-weight: var(--dp-fw-bold);
   color: #ffffff;
-  background: var(--dp-grad-dark);
+  background: #141727;
   letter-spacing: 0.02em;
 }
 
@@ -207,7 +207,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .memberBio {

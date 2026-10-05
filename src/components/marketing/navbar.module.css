@@ -61,8 +61,8 @@
 
 .link:hover,
 .link[aria-current="page"] {
-  color: var(--dp-info);
-  background: rgba(23, 193, 232, 0.08);
+  color: var(--dp-accent);
+  background: rgba(33, 82, 255, 0.08);
 }
 
 .actions {
@@ -100,19 +100,20 @@
 }
 
 .loginBtn:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
   background: var(--dp-grey-100);
 }
 
 .ctaBtn {
   color: var(--dp-white);
-  background: var(--dp-grad-info);
-  box-shadow: var(--dp-shadow-button);
+  background: #2152ff;
+  box-shadow: var(--dp-shadow-xs);
 }
 
 .ctaBtn:hover {
   transform: translateY(-1px);
-  box-shadow: var(--dp-shadow-button-state);
+  background: #1a41d8;
+  box-shadow: var(--dp-shadow-sm);
 }
 
 /* mobile burger */
@@ -158,7 +159,7 @@
 }
 
 .drawerLink:hover {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .drawerActions {

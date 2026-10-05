@@ -24,22 +24,28 @@
   width: 48px;
   height: 48px;
   border-radius: var(--dp-radius-lg);
-  background: var(--dp-grad-info);
-  color: #ffffff;
-  box-shadow: var(--dp-shadow-md);
+  background: rgba(33, 82, 255, 0.09);
+  color: #2152ff;
+  border: 1px solid rgba(33, 82, 255, 0.18);
   margin-bottom: 16px;
 }
 
 .group:nth-child(2) .groupIcon {
-  background: var(--dp-grad-primary);
+  background: rgba(52, 71, 103, 0.08);
+  color: var(--dp-dark);
+  border-color: rgba(52, 71, 103, 0.16);
 }
 
 .group:nth-child(3) .groupIcon {
-  background: var(--dp-grad-success);
+  background: rgba(23, 173, 55, 0.09);
+  color: #17ad37;
+  border-color: rgba(23, 173, 55, 0.18);
 }
 
 .group:nth-child(4) .groupIcon {
-  background: var(--dp-grad-dark);
+  background: var(--dp-grey-100);
+  color: var(--dp-grey-700);
+  border-color: var(--dp-grey-300);
 }
 
 .groupTitle {
@@ -85,8 +91,8 @@
   width: 38px;
   height: 38px;
   border-radius: var(--dp-radius-md);
-  background: rgba(23, 193, 232, 0.1);
-  color: var(--dp-info);
+  background: rgba(33, 82, 255, 0.1);
+  color: var(--dp-accent);
   margin-bottom: 14px;
 }
 
@@ -153,11 +159,11 @@
 }
 
 .yes {
-  color: var(--dp-success);
+  color: var(--dp-success-text);
 }
 
 .no {
-  color: var(--dp-grey-400);
+  color: var(--dp-grey-600);
 }
 
 /* ---------- integration strip ---------- */
@@ -231,4 +237,99 @@
   .cards {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- home page features grid (Features.tsx) ----------
+   These classes were referenced by Features.tsx but never defined — the
+   section rendered with no grid, no spacing and no icon styling. Restored
+   with a deliberate plain treatment: hairline borders, tinted icon chips,
+   no gradient tiles, no hover lift. */
+
+.section {
+  padding: 88px 0;
+}
+
+.head {
+  max-width: 64ch;
+  margin-bottom: 44px;
+}
+
+.title {
+  font-size: var(--dp-h2);
+  font-weight: var(--dp-fw-bold);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--dp-dark);
+  margin: 10px 0 14px;
+}
+
+.sub {
+  font-size: var(--dp-size-body);
+  line-height: 1.7;
+  color: var(--dp-text-main);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 64px 0;
+  }
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--dp-radius-md);
+  background: rgba(33, 82, 255, 0.08);
+  color: #2152ff;
+  border: 1px solid rgba(33, 82, 255, 0.16);
+  margin-bottom: 14px;
+}
+
+/* Six flat accent hues rotate across the home cards — colourful, not
+   gradient soup. Each chip keeps AA contrast for its icon glyph. */
+.grid > article:nth-child(6n + 2) .iconWrap {
+  background: rgba(121, 40, 202, 0.08);
+  color: #6d23b8;
+  border-color: rgba(121, 40, 202, 0.2);
+}
+
+.grid > article:nth-child(6n + 3) .iconWrap {
+  background: rgba(14, 155, 181, 0.09);
+  color: #0e7490;
+  border-color: rgba(14, 155, 181, 0.22);
+}
+
+.grid > article:nth-child(6n + 4) .iconWrap {
+  background: rgba(23, 173, 55, 0.09);
+  color: #12862b;
+  border-color: rgba(23, 173, 55, 0.22);
+}
+
+.grid > article:nth-child(6n + 5) .iconWrap {
+  background: rgba(180, 83, 9, 0.09);
+  color: #b45309;
+  border-color: rgba(180, 83, 9, 0.22);
+}
+
+.grid > article:nth-child(6n + 6) .iconWrap {
+  background: rgba(214, 51, 108, 0.08);
+  color: #d6336c;
+  border-color: rgba(214, 51, 108, 0.2);
 }

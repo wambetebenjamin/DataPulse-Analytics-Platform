@@ -56,7 +56,7 @@ a.link:hover,
 .link:hover,
 a.link:focus,
 .link:focus {
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 /* typography.js heading defaults: color dark.main, weight medium */
@@ -143,13 +143,13 @@ table {
 
 /* Visible focus for keyboard users on every interactive surface */
 :focus-visible {
-  outline: 2px solid var(--dp-info);
+  outline: 2px solid var(--dp-accent);
   outline-offset: 2px;
   border-radius: var(--dp-radius-sm);
 }
 
 ::selection {
-  background: var(--dp-info);
+  background: var(--dp-accent);
   color: var(--dp-white);
 }
 
@@ -191,9 +191,9 @@ table {
 .dp-eyebrow {
   font-size: var(--dp-size-xxs);
   font-weight: var(--dp-fw-bold);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--dp-info);
+  color: var(--dp-accent);
 }
 
 .dp-sr-only {

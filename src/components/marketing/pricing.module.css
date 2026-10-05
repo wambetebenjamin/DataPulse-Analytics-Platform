@@ -34,7 +34,7 @@
 }
 
 .toggleBtn[data-active="true"] {
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: var(--dp-white);
   box-shadow: var(--dp-shadow-button);
 }
@@ -85,7 +85,7 @@
 }
 
 .card[data-featured="true"] {
-  border-color: var(--dp-info);
+  border-color: var(--dp-accent);
   box-shadow: var(--dp-shadow-lg);
   padding-top: 42px;
 }
@@ -97,7 +97,7 @@
   transform: translate(-50%, -50%);
   padding: 6px 16px;
   border-radius: 999px;
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: var(--dp-white);
   font-size: 11px;
   font-weight: var(--dp-fw-bold);
@@ -196,7 +196,7 @@
 }
 
 .ctaFilled {
-  background: var(--dp-grad-info);
+  background: #2152ff;
   color: var(--dp-white);
   box-shadow: var(--dp-shadow-button);
 }
@@ -208,9 +208,9 @@
 }
 
 .ctaOutline:hover {
-  border-color: var(--dp-info);
-  color: var(--dp-info);
-  background: rgba(23, 193, 232, 0.06);
+  border-color: var(--dp-accent);
+  color: var(--dp-accent);
+  background: rgba(33, 82, 255, 0.06);
 }
 
 .ctaFilled:hover {
@@ -236,7 +236,7 @@
 .features svg {
   flex-shrink: 0;
   margin-top: 3px;
-  color: var(--dp-success);
+  color: var(--dp-success-text);
 }
 
 .taxNote {

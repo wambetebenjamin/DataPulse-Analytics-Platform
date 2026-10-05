@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { canAccessTab, currentUser } from "@/lib/auth";
 import { DASHBOARD_TABS } from "@/data/site";
+import TrialGate from "@/components/dashboard/TrialGate";
 import RevenueTab from "@/components/dashboard/tabs/RevenueTab";
 import SalesTab from "@/components/dashboard/tabs/SalesTab";
 import CustomersTab from "@/components/dashboard/tabs/CustomersTab";
@@ -44,7 +45,15 @@ export default async function DashboardTabPage({ params }: Params) {
   if (!Tab) notFound();
 
   const user = await currentUser();
-  if (!user) redirect(`/login?callbackUrl=/app/dashboard/${params.tab}`);
+
+  // Anonymous: trial mode — every feature visible, one free view per browser.
+  if (!user) {
+    return (
+      <TrialGate tabKey={params.tab}>
+        <Tab role="Owner" />
+      </TrialGate>
+    );
+  }
 
   // Role gate: a Viewer who types /app/dashboard/staff lands back on Overview
   // rather than seeing a tab their role does not grant.

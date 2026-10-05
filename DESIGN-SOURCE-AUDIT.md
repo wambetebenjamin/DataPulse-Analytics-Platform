@@ -554,6 +554,8 @@ y-grid, no x-grid, `#b2b9bf` 11px ticks.
 | Creative Tim stock photos | **Pexels/Unsplash East African imagery** | brief |
 | `caption` 12px / `size.xxs` 10.4px | **metadata floor raised to 11px**, nav 13px, buttons 12px, body 15px | brief accessibility floors override the source where the source is smaller |
 | `primary #cb0c9f` (magenta) used sparingly | kept in the token set; **`info #17c1e8` + `dark #344767` lead** the DataPulse palette | matches the source's own dashboard default (`sidenavColor: "info"`, `theme-color: #17c1e8`) |
+| body/metadata text greys `#67748e`, `#adb5bd`, `#6c757d` | **darkened** to `#3d4a5f`, `#737d8c`, `#545d6a` | the source values measured 1.9–4.9:1 as text on white; readability feedback overrode the 1:1 port |
+| 3D globe (three.js) | **removed** | dropped from the marketing skin during the design pass; the dashboard is the product |
 
 > Everything else — every hex, every shadow, every radius, every type step — is
 > the zip's, unchanged.

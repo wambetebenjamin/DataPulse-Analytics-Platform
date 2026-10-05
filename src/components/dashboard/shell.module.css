@@ -135,6 +135,45 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Trial mode: category already spent its free view in this browser. */
+.spentIcon {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.trialNote {
+  margin: 14px 0 2px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--dp-radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* Sign-in button shown in the topbar during trial mode. */
+.signInBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 2.25rem;
+  padding: 0.55rem 1.05rem;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: var(--dp-radius-md);
+  color: var(--dp-white);
+  background: var(--dp-dark);
+  white-space: nowrap;
+  transition: background-color 150ms ease;
+}
+
+.signInBtn:hover {
+  background: var(--dp-grey-800);
+}
+
 .sideFoot {
   margin-top: 16px;
   padding: 16px;

@@ -8,16 +8,30 @@
 *
 * The source expressed these as a MUI theme object in JavaScript and shipped
 * ZERO css files. Every hex, shadow, radius and type step below is the source
-* value unchanged. pxToRem(n) = n/16rem is preserved.
+* value unchanged, except four text greys darkened for readability (marked
+* inline) — the source values were too light to read on white. pxToRem(n) =
+* n/16rem is preserved.
 * See DESIGN-SOURCE-AUDIT.md §4 and §5.
 =========================================================
 */
 
 :root {
+  /* ---------- marketing accent (added) ----------
+     The ported Soft UI "info" cyan (#17c1e8) reads at ~2:1 on white — fine as
+     a fill on dark surfaces, unreadable as text on light ones. The marketing
+     skin therefore carries its own accent: the brand blue, plus a green dark
+     enough for light backgrounds. The dashboard keeps the ported tokens. */
+  --dp-accent: #2152ff;
+  --dp-accent-strong: #1a41d8;
+  --dp-accent-soft: rgba(33, 82, 255, 0.08);
+  --dp-accent-line: rgba(33, 82, 255, 0.28);
+  --dp-accent-on-dark: #8fb3ff;
+  --dp-success-text: #12862b;
+
   /* ---------- colors.js : base ---------- */
   --dp-background-default: #f8f9fa;
-  --dp-text-main: #67748e;
-  --dp-text-focus: #67748e;
+  --dp-text-main: #3d4a5f; /* darkened from #67748e — readability */
+  --dp-text-focus: #3d4a5f; /* darkened from #67748e — readability */
   --dp-transparent: transparent;
   --dp-white: #ffffff;
   --dp-white-focus: #ffffff;
@@ -46,8 +60,8 @@
   --dp-grey-200: #e9ecef;
   --dp-grey-300: #dee2e6;
   --dp-grey-400: #ced4da;
-  --dp-grey-500: #adb5bd;
-  --dp-grey-600: #6c757d;
+  --dp-grey-500: #737d8c; /* darkened from #adb5bd — was 1.9:1 as text */
+  --dp-grey-600: #545d6a; /* darkened from #6c757d — readability */
   --dp-grey-700: #495057;
   --dp-grey-800: #343a40;
   --dp-grey-900: #212529;
