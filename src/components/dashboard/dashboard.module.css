@@ -612,3 +612,586 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- range control additions ---------- */
+
+.segIcon {
+  display: grid;
+  place-items: center;
+  padding-left: 8px;
+  padding-right: 2px;
+  color: var(--dp-grey-500);
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+.dateRange input {
+  padding: 6px 10px;
+  border-radius: var(--dp-radius-md);
+  border: 1px solid var(--dp-grey-300);
+  background: var(--dp-white);
+  font-size: var(--dp-size-body);
+  font-family: inherit;
+  color: var(--dp-dark);
+}
+
+.dateRange input:focus-visible {
+  outline: 2px solid var(--dp-info);
+  outline-offset: 1px;
+}
+
+.targetPct[data-over="true"] {
+  color: var(--dp-success, #82d616);
+}
+
+/* ---------- funnel stage list ---------- */
+
+.stageList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stageItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dp-grey-200);
+}
+
+.stageItem:last-child {
+  border-bottom: none;
+}
+
+.stageName {
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-medium);
+  color: var(--dp-dark);
+}
+
+.stageNums {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stageCount {
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.stageRate,
+.stageStep {
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+/* ---------- calendar heatmap ---------- */
+
+.heatGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  max-width: 460px;
+}
+
+.heatHead {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dp-grey-500);
+  text-align: center;
+  padding-bottom: 2px;
+}
+
+.heatBlank {
+  aspect-ratio: 1;
+}
+
+.heatCell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--dp-radius-sm);
+  font-size: 11px;
+  font-weight: var(--dp-fw-medium);
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+  transition: transform 140ms var(--dp-ease-brief);
+}
+
+.heatCell:hover {
+  transform: scale(1.08);
+}
+
+.heatLegend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+.heatSwatch {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ---------- customer map ---------- */
+
+.mapCanvas {
+  width: 100%;
+  height: 420px;
+  border-radius: var(--dp-radius-lg);
+  overflow: hidden;
+  background: var(--dp-grey-100);
+}
+
+.mapFallback {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 420px;
+  border-radius: var(--dp-radius-lg);
+  background:
+    radial-gradient(520px 320px at 38% 46%, rgba(23, 193, 232, 0.1), transparent 68%),
+    var(--dp-grey-100);
+  border: 1px solid var(--dp-grey-200);
+  overflow: hidden;
+}
+
+.mapBubble {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(23, 193, 232, 0.38);
+  border: 2px solid #2152ff;
+  cursor: default;
+  transition: transform 160ms var(--dp-ease-brief);
+}
+
+.mapBubble:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  background: rgba(23, 193, 232, 0.56);
+}
+
+.mapNote {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--dp-radius-sm);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--dp-grey-200);
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+.targetSubLabel {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: var(--dp-fw-regular);
+  color: var(--dp-grey-500);
+}
+
+/* ---------- alert dismiss + rule composer ---------- */
+
+.alertDismiss {
+  margin-left: auto;
+  align-self: flex-start;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: var(--dp-radius-sm);
+  color: var(--dp-grey-500);
+  transition:
+    background 140ms var(--dp-ease-brief),
+    color 140ms var(--dp-ease-brief);
+}
+
+.alertDismiss:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--dp-dark);
+}
+
+.ruleForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grey-100);
+  border: 1px solid var(--dp-grey-200);
+}
+
+.ruleField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 160px;
+}
+
+.ruleField > span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dp-grey-500);
+}
+
+.ruleField select,
+.ruleField input {
+  padding: 8px 11px;
+  border-radius: var(--dp-radius-md);
+  border: 1px solid var(--dp-grey-300);
+  background: var(--dp-white);
+  font-family: inherit;
+  font-size: var(--dp-size-body);
+  color: var(--dp-dark);
+}
+
+.ruleField select:focus-visible,
+.ruleField input:focus-visible {
+  outline: 2px solid var(--dp-info);
+  outline-offset: 1px;
+}
+
+/* ---------- report builder ---------- */
+
+.metricFieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fieldLegend {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dp-grey-500);
+  margin-bottom: 10px;
+}
+
+.metricGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metricChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--dp-grey-300);
+  background: var(--dp-white);
+  font-size: var(--dp-size-body);
+  color: var(--dp-text-main);
+  cursor: pointer;
+  transition:
+    border-color 150ms var(--dp-ease-brief),
+    background 150ms var(--dp-ease-brief),
+    color 150ms var(--dp-ease-brief);
+}
+
+.metricChip:hover {
+  border-color: var(--dp-info);
+}
+
+.metricChip input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.metricChip[data-checked="true"] {
+  background: rgba(23, 193, 232, 0.1);
+  border-color: var(--dp-info);
+  color: var(--dp-info);
+  font-weight: var(--dp-fw-medium);
+}
+
+.metricChip:focus-within {
+  outline: 2px solid var(--dp-info);
+  outline-offset: 2px;
+}
+
+.channelCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spin {
+  animation: dpSpin 800ms linear infinite;
+}
+
+@keyframes dpSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- settings ---------- */
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.settingsActions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.savedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dp-success, #82d616);
+}
+
+.ruleField input:disabled,
+.ruleField select:disabled {
+  background: var(--dp-grey-100);
+  color: var(--dp-grey-500);
+  cursor: not-allowed;
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.roleCard {
+  padding: 16px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grey-100);
+  border: 1px solid var(--dp-grey-200);
+}
+
+.roleCard[data-current="true"] {
+  background: rgba(23, 193, 232, 0.07);
+  border-color: var(--dp-info);
+}
+
+.roleName {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+  margin-bottom: 8px;
+}
+
+.roleYou {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--dp-info);
+  color: #ffffff;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roleList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.roleList li {
+  position: relative;
+  padding-left: 13px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--dp-text-main);
+}
+
+.roleList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dp-info);
+}
+
+.integrationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.integrationCard {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px;
+  border-radius: var(--dp-radius-lg);
+  background: var(--dp-grey-100);
+  border: 1px solid var(--dp-grey-200);
+}
+
+.integrationIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-white);
+  border: 1px solid var(--dp-grey-200);
+  color: var(--dp-dark);
+}
+
+.integrationBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.integrationName {
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-bold);
+  color: var(--dp-dark);
+}
+
+.integrationDetail {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--dp-text-main);
+}
+
+.integrationEndpoint {
+  margin-top: 2px;
+  font-size: 11px;
+  font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  color: var(--dp-grey-500);
+}
+
+.toggleList {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--dp-grey-200);
+}
+
+.toggleRow:last-child {
+  border-bottom: none;
+}
+
+.toggleLabel {
+  font-size: var(--dp-size-body);
+  font-weight: var(--dp-fw-medium);
+  color: var(--dp-dark);
+}
+
+.toggleDetail {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--dp-grey-500);
+}
+
+.switch {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.switchTrack {
+  display: block;
+  width: 42px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--dp-grey-300);
+  transition: background 180ms var(--dp-ease-brief);
+}
+
+.switchThumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: var(--dp-shadow-sm);
+  transition: transform 180ms var(--dp-ease-brief);
+}
+
+.switch input:checked + .switchTrack {
+  background: var(--dp-grad-info);
+}
+
+.switch input:checked + .switchTrack .switchThumb {
+  transform: translateX(20px);
+}
+
+.switch input:focus-visible + .switchTrack {
+  outline: 2px solid var(--dp-info);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1200px) {
+  .settingsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .roleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .settingsGrid,
+  .roleGrid,
+  .integrationGrid {
+    grid-template-columns: 1fr;
+  }
+}
