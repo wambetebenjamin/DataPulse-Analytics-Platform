@@ -64,6 +64,14 @@ const CATEGORIES = [
   },
 ];
 
+/** Event any page can dispatch to re-open the preferences modal. */
+export const CONSENT_REOPEN_EVENT = "datapulse:consent-reopen";
+
+/** Re-open the cookie preferences modal from anywhere (e.g. the cookie policy). */
+export function openCookiePreferences(): void {
+  window.dispatchEvent(new CustomEvent(CONSENT_REOPEN_EVENT));
+}
+
 export function readConsent(): ConsentState | null {
   if (typeof window === "undefined") return null;
   try {
@@ -89,6 +97,25 @@ export default function CookieConsent() {
       const t = window.setTimeout(() => setVisible(true), 1700);
       return () => window.clearTimeout(t);
     }
+  }, []);
+
+  // The Cookie Policy page (and the footer) can re-open this at any time, which
+  // is how consent stays withdrawable as the DPA 2019 requires.
+  useEffect(() => {
+    const onReopen = () => {
+      const existing = readConsent();
+      if (existing) {
+        setPrefs({
+          functional: existing.functional,
+          analytics: existing.analytics,
+          marketing: existing.marketing,
+        });
+      }
+      setVisible(true);
+      setModalOpen(true);
+    };
+    window.addEventListener(CONSENT_REOPEN_EVENT, onReopen);
+    return () => window.removeEventListener(CONSENT_REOPEN_EVENT, onReopen);
   }, []);
 
   const persist = useCallback((state: Omit<ConsentState, "version" | "decidedAt" | "necessary">) => {

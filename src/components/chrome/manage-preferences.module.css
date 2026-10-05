@@ -1,0 +1,21 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  min-height: 2.375rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--dp-radius-md);
+  background: var(--dp-grad-info);
+  color: #ffffff;
+  font-size: var(--dp-size-xs);
+  font-weight: var(--dp-fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: var(--dp-shadow-button);
+  transition: transform 160ms var(--dp-ease-brief);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
